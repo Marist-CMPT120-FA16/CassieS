@@ -22,7 +22,8 @@
 		<!--This is the button action-->
 		<!--This is the function for button North-->
 		
-		document.getElementById("myImage").src = "spongebob.jpg";
+		<!-- NOTE FOR LATER: document.getElementById("myImage").src = "spongebob.jpg";-->
+		<!--PSUEDO CODE: 1. show intro text 2. onClick - change text 3. repeat until question 4. buttons change text-->
 
 element = document.getElementById("id")
 		
@@ -36,12 +37,17 @@ element = document.getElementById("id")
 
             // 1. Assign the message we want to display to a variable named "message". (This is a good variable name.)
             var message = "All your friends can't wait; but, secretly, the place creeps you out...";
+            var message1 = "The advertisements describe it as a "gory, terror-filled fright fest".";
+            var message2 = "All your friends were invited to a special preview, but you didn't want anything to do with the place. They all went without you, including your best friend, Sam."
+            
 
             // 2. Find the text area in the DOM and assign it to a variable named "targetTextArea".
             var targetTextArea = document.getElementById("taMain");
 
             // 3. Finally, assign the message to the text (the "value" attribute) of the DOM's text area.
             targetTextArea.value = message;
+            
+            
          }
       </script>
 	</head>
@@ -54,7 +60,7 @@ element = document.getElementById("id")
  		<textarea rows="5"
                 cols="45"
                 id = "taMain"
-                name="taMain">A new amusement park is about to open and it's all anyone can talk about.
+                name="taMain">A new amusement park is about to open and it's all anyone can talk about. Fright Park is causing a sensation!
         </textarea>
       <p>
       		 <input type="buttonCont"
