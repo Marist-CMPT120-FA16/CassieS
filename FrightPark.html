@@ -10,8 +10,19 @@
 		<script type="text/javascript">
 		//This script defines the north directional button.
          function btnNorth_click() {
-         	var welcome = "A new amusement park is coming to town."
+         	var welcome = 
           	document.write(welcome);   
+			
+			document.getElementById("taMain").value = "";
+
+            // 1. Assign the message we want to display to a variable named "message". (This is a good variable name.)
+            var message = "Going north, you wind up at the Death by Coaster ride. Already voted most terrifying coaster in the world.";
+
+            // 2. Find the text area in the DOM and assign it to a variable named "targetTextArea".
+            var targetTextArea = document.getElementById("taMain");
+
+            // 3. Finally, assign the message to the text (the "value" attribute) of the DOM's text area.
+            targetTextArea.value = message;
          }         
          
 		<!--This is the button script-->
@@ -57,10 +68,11 @@
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
 		    
         
- 		<textarea rows="5"
-                cols="45"
+ 		<textarea rows="15"
+                cols="75"
                 id = "taMain"
-                name="taMain">A new amusement park is about to open and it's all anyone can talk about. Fright Park is causing a sensation!
+                name="taMain">
+A new amusement park is coming to town. The advertisements describe it as a 'gory, terror-filled fright fest'. All your friends can't wait; but, secretly, the place creeps you out... But the next day, Sam goes missing. Only you KNOW it was that place. It's up to you to investigate, so you've jumped the fence of the park. The full, low moon lights your way. Which direction do you want to go first?
         </textarea>
       <p>
       		 <input type="buttonCont"
