@@ -7,6 +7,17 @@
 		<title>Welcome to Fright Park</title>
 		<!--This is the title of my game-->
 		
+		<script type="text/javascript">
+         function btnNorth_click() {
+         	var welcome = "A new amusement park is coming to town."
+            // Single line comment
+          	document.write(welcome);  // Alan hates the alert function. DO not use it.
+            /*
+               Block comment               
+            */
+         }         
+         </script>
+         
 		<script>
 		<!--This is the button script-->
 			var buttonN = 
@@ -14,12 +25,22 @@
 		<!--This is the button action-->
 		<!--This is the function for button North-->
 		
+		document.getElementById("myImage").src = "spongebob.jpg";
+		
+		document.write() does a simple HTML injection into the body.
+element = document.getElementById("id")
+		
 		</script>
 	</head>
 	
 	<body>
 		<h1>Welcome to Fright Park!</h1>
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a>
+		    <input type="buttonNorth"
+             id = "btnN"
+             name="btnN"
+             value="North" 
+             onclick="btnNorth_click();" />
 	</body>
 
 </html>
