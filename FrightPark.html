@@ -29,17 +29,7 @@ element = document.getElementById("id")
 		</script>
 		<script type="text/javascript">
          function btnCont_click() {
-            // JavaScript comment: single line
-
-            /*
-               JavaScript comment: block
-            */
-
-            var ta = "Alan";
-        
-            ta = "Bond";
-
- 
+  
             // The next non-comment line find the text area in the DOM
             // and assign it some new text; all in one line of code.
             document.getElementById("taMain").value = "All your friends can't wait; but, secretly, the place creeps you out...";
@@ -59,14 +49,10 @@ element = document.getElementById("id")
 	<body>
 		<h1>Welcome to Fright Park!</h1>
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
-		    <input type="buttonNorth"
-             id = "btnN"
-             name="btnN"
-             value="North" 
-             onclick="btnNorth_click();" />
+		    
         
  		<textarea rows="5"
-                cols="32"
+                cols="45"
                 id = "taMain"
                 name="taMain">A new amusement park is about to open and it's all anyone can talk about.
         </textarea>
@@ -77,6 +63,13 @@ element = document.getElementById("id")
              value="Continue" 
              onclick="btnCont_click();" />
 	   </p>
+	   <p>
+	   <input type="buttonNorth"
+             id = "btnN"
+             name="btnN"
+             value="North" 
+             onclick="btnNorth_click();" />
+        </p>
 	</body>
 
 </html>
