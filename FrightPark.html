@@ -8,7 +8,39 @@
 		<!--This is the title of my game-->
 		
 		<style type="text/css">
-			textarea { border: none; }
+			textarea { 
+			display: block;
+			border:0;
+			margin-left: auto;
+			margin-right: auto;
+			}
+			
+			.button {
+				background-color: #ff3030;
+				border-width:3px;
+				border-radius:5px;
+				border-color:#b22222;
+				color: white;
+				padding: 10px 12px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				width:25px;
+				}
+				
+				
+		/*center website*/
+		#wrapper {
+		max-width: 900px;
+		margin: 0 auto;
+		}
+		
+		/*center buttons*/
+		#btns {
+		text-align: center;
+		margin: auto;
+		}
 		</style>
 		
 		<script type="text/javascript">
@@ -109,6 +141,7 @@
 	</head>
 	
 	<body>
+	<div id = "wrapper">
 		<h1>Welcome to Fright Park!</h1>
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
 		    
@@ -119,30 +152,38 @@
                 name="taMain">
 A new amusement park is coming to town. The advertisements describe it as a 'gory, terror-filled fright fest'. All your friends can't wait; but, secretly, the place creeps you out... But the next day, Sam goes missing. Only you KNOW it was that place. It's up to you to investigate, so you've jumped the fence of the park. The full, low moon lights your way. Which direction do you want to go first?
         </textarea>
- <p>
+ <div id="btns">
 	    <input type="btnNorth"
+			class = "button"
              id = "btnN"
              name="btnN"
-             value="North" 
+             value="N" 
              onclick="btnNorth_click();" />
-       <input type="btnSouth"
-             id = "btnS"
-             name="btnS"
-             value="South" 
-             onclick="btnSouth_click();" />
+			 </br>
        
 	   <input type="btnWest"
+			class = "button"
              id = "btnW"
              name="btnW"
-             value="West" 
+             value="W" 
              onclick="btnWest_click();" />
         
 	   <input type="btnEast"
+			class = "button"
              id = "btnE"
              name="btnE"
-             value="East" 
+             value="E" 
              onclick="btnEast_click();" />
-        </p>
+			
+			 	</br>		 
+       <input type="btnSouth"
+			class = "button"
+             id = "btnS"
+             name="btnS"
+             value="S" 
+             onclick="btnSouth_click();" />
+</div> <!--btns-->
+		</div> <!-- wrapper-->
 	</body>
 
 </html>
