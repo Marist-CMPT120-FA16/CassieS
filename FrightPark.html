@@ -10,25 +10,32 @@
 		<script type="text/javascript">
 		//This script defines the north directional button.
          function btnNorth_click() {
-         	var welcome = "A new amusement park is coming to town."
+         	var welcome = 
           	document.write(welcome);   
+			
+			document.getElementById("taMain").value = "";
+
+            // 1. Assign the message we want to display to a variable named "message". (This is a good variable name.)
+            var message = "Going north, you wind up at the Death by Coaster ride. Already voted most terrifying coaster in the world.";
+
+            // 2. Find the text area in the DOM and assign it to a variable named "targetTextArea".
+            var targetTextArea = document.getElementById("taMain");
+
+            // 3. Finally, assign the message to the text (the "value" attribute) of the DOM's text area.
+            targetTextArea.value = message;
          }         
-         </script>
          
-		<script>
 		<!--This is the button script-->
-			var buttonN = 
-			var buttonS = 
+		<!--var buttonN =--> 
+		<!--var buttonS =--> 
 		<!--This is the button action-->
 		<!--This is the function for button North-->
 		
-		<!-- NOTE FOR LATER: document.getElementById("myImage").src = "spongebob.jpg";-->
+		<!-- NOTE FOR LATER (NFL): document.getElementById("myImage").src = "spongebob.jpg";-->
 		<!--PSUEDO CODE: 1. show intro text 2. onClick - change text 3. repeat until question 4. buttons change text-->
 
-element = document.getElementById("id")
+		<!--NFL: element = document.getElementById("id")-->
 		
-		</script>
-		<script type="text/javascript">
          function btnCont_click() {
   
             // The next non-comment line find the text area in the DOM
@@ -36,9 +43,10 @@ element = document.getElementById("id")
             document.getElementById("taMain").value = "All your friends can't wait; but, secretly, the place creeps you out...";
 
             // 1. Assign the message we want to display to a variable named "message". (This is a good variable name.)
+			var messageCount = "0";
             var message = "All your friends can't wait; but, secretly, the place creeps you out...";
-            var message1 = "The advertisements describe it as a "gory, terror-filled fright fest".";
-            var message2 = "All your friends were invited to a special preview, but you didn't want anything to do with the place. They all went without you, including your best friend, Sam."
+            var message1 = "The advertisements describe it as a 'gory, terror-filled fright fest'.";
+            var messagePrev = "All your friends were invited to a special preview, but you didn't want anything to do with the place. They all went without you, including your best friend, Sam.";
             
 
             // 2. Find the text area in the DOM and assign it to a variable named "targetTextArea".
@@ -46,10 +54,13 @@ element = document.getElementById("id")
 
             // 3. Finally, assign the message to the text (the "value" attribute) of the DOM's text area.
             targetTextArea.value = message;
-            
-            
+            messageCount++;
+			
+			if(messageCount<=3){
+			targetTextArea.value = message + 1;
+			}
          }
-      </script>
+		</script>
 	</head>
 	
 	<body>
@@ -57,10 +68,11 @@ element = document.getElementById("id")
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
 		    
         
- 		<textarea rows="5"
-                cols="45"
+ 		<textarea rows="15"
+                cols="75"
                 id = "taMain"
-                name="taMain">A new amusement park is about to open and it's all anyone can talk about. Fright Park is causing a sensation!
+                name="taMain">
+A new amusement park is coming to town. The advertisements describe it as a 'gory, terror-filled fright fest'. All your friends can't wait; but, secretly, the place creeps you out... But the next day, Sam goes missing. Only you KNOW it was that place. It's up to you to investigate, so you've jumped the fence of the park. The full, low moon lights your way. Which direction do you want to go first?
         </textarea>
       <p>
       		 <input type="buttonCont"
