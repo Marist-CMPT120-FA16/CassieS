@@ -55,22 +55,23 @@
 		<script type="text/javascript">
 		//This script defines the north directional button.
          function btnNorth_click() {
-			document.getElementById("taMain").value = "Going north, you wind up at the Death by Coaster ride. Already voted most terrifying coaster in the world.";
+			document.getElementById("taMain").value = "You head north. You wind up at 'Death by Coaster', already voted most terrifying coaster in the world.";
             // Message assigned variable named, well, "message". (Smart, right??)
             var message = "You head north. You wind up at 'Death by Coaster', already voted most terrifying coaster in the world.";
             // Text area in the DOM is assigned variable named "targetTextArea".
             var targetTextArea = document.getElementById("taMain");
             // The message is assigned to the text of the DOM's text area.
             targetTextArea.value = message;
-			score++;
+			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
          }         
          
 		 //This script defines the south directional button.
          function btnSouth_click() {
-			document.getElementById("taMain").value = "Going north, you wind up at the Death by Coaster ride. Already voted most terrifying coaster in the world.";
+			document.getElementById("taMain").value = "You head south and wind up at the 'Creepy Concession' stand.";
             var message = "You head south and wind up at the 'Creepy Concession' stand.";
             var targetTextArea = document.getElementById("taMain");
             targetTextArea.value = message;
+			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
          }         
 		 
 		 //This script defines the west directional button.
@@ -79,6 +80,7 @@
             var message = "You can't go west. You came in that way. Try another direction.";
             var targetTextArea = document.getElementById("taMain");
             targetTextArea.value = message;
+			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
          }         
 		 //This script defines the east directional button.
          function btnEast_click() {
@@ -86,14 +88,10 @@
             var message = "Going east brings you to the 'Haunted Maze'. You REALLY don't want to go in there.";
             var targetTextArea = document.getElementById("taMain");
             targetTextArea.value = message;
+			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
          }         
 
-		 //This script is for the score.
-		var score=0;
-		while (score<=1){
-		document.getElementById('score').innerHTML=score;
-		}
-		</script>
+	</script>
 	</head>
 	
 	<body>
@@ -138,10 +136,11 @@ A new amusement park is coming to town. The advertisements describe it as a 'gor
              name="btnS"
              value="S" 
              onclick="btnSouth_click();" />
+			 
 </div> <!--btns-->
 <div class="scorebox">
-		<p>Score: <span id="score"=score></span></p>
-		</div> <!-- wrapper-->
+	<p id="scoreSpot"></p>
+</div> <!-- wrapper-->
 	</body>
 
 </html>
