@@ -54,8 +54,6 @@
 		
 		<script type="text/javascript">
 		//This script defines the north directional button.
-		var counter=0;
-		
          function btnNorth_click() {
 			document.getElementById("taMain").value = "Going north, you wind up at the Death by Coaster ride. Already voted most terrifying coaster in the world.";
             // Message assigned variable named, well, "message". (Smart, right??)
@@ -64,7 +62,7 @@
             var targetTextArea = document.getElementById("taMain");
             // The message is assigned to the text of the DOM's text area.
             targetTextArea.value = message;
-			counter++;
+			score++;
          }         
          
 		 //This script defines the south directional button.
@@ -90,12 +88,8 @@
             targetTextArea.value = message;
          }         
 
-		 //This script is for the score counter.
-		var score;
-		var counter;
-		score=0;
-		counter=0;
-		
+		 //This script is for the score.
+		var score=0;
 		while (score<=1){
 		document.getElementById('score').innerHTML=score;
 		}
@@ -145,6 +139,8 @@ A new amusement park is coming to town. The advertisements describe it as a 'gor
              value="S" 
              onclick="btnSouth_click();" />
 </div> <!--btns-->
+<div class="scorebox">
+		<p>Score: <span id="score"=score></span></p>
 		</div> <!-- wrapper-->
 	</body>
 
