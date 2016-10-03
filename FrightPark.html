@@ -6,6 +6,9 @@
 		<meta charset = "utf-8">
 		<title>Welcome to Fright Park</title>
 		<!--This is the title of my game-->
+		<!--Cassie Schaaf-->
+		<!--Intro Programming 10.3.2016-->
+		<!--Game v1.0 with title, email, locations, text change, event handlers, & score-->
 		<!--PSUEDO CODE/ASSIGNMENT: 
 		1. Display title
 		2. Add email link
@@ -62,6 +65,8 @@
             var targetTextArea = document.getElementById("taMain");
             // The message is assigned to the text of the DOM's text area.
             targetTextArea.value = message;
+			//Assigns 5 points to the player.
+			//I realize this isn't a great solution, as it's not expandable. Will continue working on function.
 			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
          }         
          
@@ -90,7 +95,6 @@
             targetTextArea.value = message;
 			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
          }         
-
 	</script>
 	</head>
 	
@@ -99,11 +103,15 @@
 		<h1>Welcome to Fright Park!</h1>
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
 		    
- 		<textarea rows="12"
-                cols="55"
+ 		<textarea rows="15"
+                cols="100"
                 id = "taMain"
                 name="taMain">
-A new amusement park is coming to town. The advertisements describe it as a 'gory, terror-filled fright fest'. All your friends can't wait; but, secretly, the place creeps you out... But the next day, Sam goes missing. Only you KNOW it was that place. It's up to you to investigate, so you've jumped the fence of the park. The full, low moon lights your way. Which direction do you want to go first?
+A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, "Exclusive Preview" invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You "HAVE to go" they say. 
+
+However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. 
+
+Which direction do you think you should go first?
         </textarea>
 		
  <div id="btns">
