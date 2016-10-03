@@ -6,15 +6,26 @@
 		<meta charset = "utf-8">
 		<title>Welcome to Fright Park</title>
 		<!--This is the title of my game-->
-		
+		<!--PSUEDO CODE/ASSIGNMENT: 
+		1. Display title
+		2. Add email link
+		3. Add & script 4 directional buttons (NSEW)
+			a. with "message" variable
+			b. onClick - buttons change text
+		4. Show intro text 
+		5. Score counter goes up by five ONCE
+		-->
+
 		<style type="text/css">
+			/*format textarea box*/
 			textarea { 
-			display: block;
-			border:0;
-			margin-left: auto;
-			margin-right: auto;
-			}
-			
+				display: block;
+				border:0;
+				margin-left: auto;
+				margin-right: auto;
+				}
+				
+			/*format buttons*/
 			.button {
 				background-color: #ff3030;
 				border-width:3px;
@@ -29,90 +40,57 @@
 				width:25px;
 				}
 				
-				
-		/*center website*/
-		#wrapper {
-		max-width: 900px;
-		margin: 0 auto;
-		}
-		
-		/*center buttons*/
-		#btns {
-		text-align: center;
-		margin: auto;
-		}
+			#wrapper {
+				max-width: 900px;
+				margin: 0 auto;
+				}
+
+			/*center buttons*/
+			#btns {
+				text-align: center;
+				margin: auto;
+				}
 		</style>
 		
 		<script type="text/javascript">
 		//This script defines the north directional button.
          function btnNorth_click() {
-	
 			document.getElementById("taMain").value = "Going north, you wind up at the Death by Coaster ride. Already voted most terrifying coaster in the world.";
-
-            // 1. Assign the message we want to display to a variable named "message". (This is a good variable name.)
+            // Message assigned variable named, well, "message". (Smart, right??)
             var message = "You head north. You wind up at 'Death by Coaster', already voted most terrifying coaster in the world.";
-
-            // 2. Find the text area in the DOM and assign it to a variable named "targetTextArea".
+            // Text area in the DOM is assigned variable named "targetTextArea".
             var targetTextArea = document.getElementById("taMain");
-
-            // 3. Finally, assign the message to the text (the "value" attribute) of the DOM's text area.
+            // The message is assigned to the text of the DOM's text area.
             targetTextArea.value = message;
          }         
          
 		 //This script defines the south directional button.
          function btnSouth_click() {
-	
 			document.getElementById("taMain").value = "Going north, you wind up at the Death by Coaster ride. Already voted most terrifying coaster in the world.";
-
-            // 1. Assign the message we want to display to a variable named "message". (This is a good variable name.)
             var message = "You head south and wind up at the 'Creepy Concession' stand.";
-
-            // 2. Find the text area in the DOM and assign it to a variable named "targetTextArea".
             var targetTextArea = document.getElementById("taMain");
-
-            // 3. Finally, assign the message to the text (the "value" attribute) of the DOM's text area.
             targetTextArea.value = message;
          }         
 		 
 		 //This script defines the west directional button.
          function btnWest_click() {
-	
 			document.getElementById("taMain").value = "You can't go west. You came in that way. Try another direction.";
-
-            // 1. Assign the message we want to display to a variable named "message". (This is a good variable name.)
             var message = "You can't go west. You came in that way. Try another direction.";
-
-            // 2. Find the text area in the DOM and assign it to a variable named "targetTextArea".
             var targetTextArea = document.getElementById("taMain");
-
-            // 3. Finally, assign the message to the text (the "value" attribute) of the DOM's text area.
             targetTextArea.value = message;
          }         
 		 //This script defines the east directional button.
          function btnEast_click() {
-	
 			document.getElementById("taMain").value = "Going east brings you to the 'Haunted Maze'. You REALLY don't want to go in there.";
-
-            // 1. Assign the message we want to display to a variable named "message". (This is a good variable name.)
             var message = "Going east brings you to the 'Haunted Maze'. You REALLY don't want to go in there.";
-
-            // 2. Find the text area in the DOM and assign it to a variable named "targetTextArea".
             var targetTextArea = document.getElementById("taMain");
-
-            // 3. Finally, assign the message to the text (the "value" attribute) of the DOM's text area.
             targetTextArea.value = message;
          }         
-		<!--This is the button script-->
-		<!--var buttonN =--> 
-		<!--var buttonS =--> 
-		<!--This is the button action-->
-		<!--This is the function for button North-->
-		
-		<!-- NOTE FOR LATER (NFL): document.getElementById("myImage").src = "spongebob.jpg";-->
-		<!--PSUEDO CODE: 1. show intro text 2. onClick - change text 3. repeat until question 4. buttons change text-->
 
-		<!--NFL: element = document.getElementById("id")-->
-		
+		//NOTE FOR LATER (NFL): document.getElementById("myImage").src = "spongebob.jpg";
+
+		//NFL: element = document.getElementById("id")
+		//This is assigning the textbox with 
          function btnCont_click() {
   
             // The next non-comment line find the text area in the DOM
