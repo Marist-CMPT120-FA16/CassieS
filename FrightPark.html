@@ -54,13 +54,23 @@
 		</style>
 		
 		<script type="text/javascript">
-		//4 different locations NSEW (10 points)
+		//6 different locations NSEW (10 points)
 		//Display the text in the textarea for each location as you move (10 points)
 		//Write one event handler function for each button that (10 points)
 		//			1. declares a var message
 		//			2. initialize message that describes location
 		//			3. passes message as a parameter
-		//Keep score ()
+		//Keep score (5 points)
+		//Keep track of locations
+		//Add text imput control using NSEW
+		//Invalid command return
+		//Go button next to text input
+		//updateDisplay function - parameter message
+		
+		
+		
+		
+		
 		//***MUSIC***
 		//Redletter Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 3.0 //License http://creativecommons.org/licenses/by/3.0/
 
@@ -113,17 +123,21 @@
          function look() {
             var desc = "";
             switch(currentLoc) {
-               case 0: desc = "Better move quick or someone will find you!";
+               case 0: desc = "Crap! You can't go that way. That is, unless you want to leave the park. Are you SCARED? No one would fault you for being too weak. What does Sam matter anyway? Humans are so fragile...";
                        break;
-               case 1: desc = "You head north. You wind up at 'Death by Coaster', already voted most terrifying coaster in the world.";
+               case 1: desc = "You wind up at 'Death by Coaster', already voted most terrifying coaster in the world.";
                        break; 
-               case 2: desc = "You head south and wind up at the 'Creepy Concession' stand.";
+               case 2: desc = "Ahead of you looms the Haunted Mansion";
                        break;
-               case 3: desc = "You can't go west. You came in that way. Try another direction.";
+               case 3: desc = "Maze? What's a maze doing in an amusement park?";
                        break;
-               case 4: desc = "Going east brings you to the 'Haunted Maze'. You REALLY don't want to go in there.";
+               case 4: desc = "Omg. Insect Infestation? what kind of entertainment is THAT?!";
                        break;
-               default: desc = "You cannot go that way";
+				case 5: desc = "This seems normal enough, despite the name. Creepy Concessions can't be TOO weird."
+						break;
+				case 6: desc = "The Cirque du Horrors tent. This can't be good..."
+						break;
+               default: desc = "Better move quick or someone will find you!";
             }
             checkScore();
             desc = desc + "\n" + "Score: " + score ;
@@ -157,6 +171,12 @@
             } else if ( (! hasVisitedLoc4) && (currentLoc === 4) ) {            
                   score = score + 5;
                   hasVisitedLoc4 = true;
+			} else if ( (! hasVisitedLoc5) && (currentLoc === 5) ) {            
+                  score = score + 5;
+                  hasVisitedLoc5 = true;
+		    } else if ( (! hasVisitedLoc6) && (currentLoc === 6) ) {            
+                  score = score + 5;
+                  hasVisitedLoc6 = true;
             }            
          }
 
@@ -174,6 +194,7 @@
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
 	
 		<!--Display the text for the starting location of your game in a textarea-->
+<div>
  		<textarea rows="15"
                 cols="100"
                 id = "taMain"
@@ -185,8 +206,8 @@ However, in the days afterward, your best friend Sam has gone missing. Everyone 
 Which direction do you think you should go first?
         </textarea>
 		<!--Implement 4 buttons-->
-	
- <div id="btns">
+</div> <!--Text area-->
+<div id="btns">
 	    <input type="button"
 			class = "button"
             id = "btnN"
