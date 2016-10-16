@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+		<meta charset = "utf-8">
+		<title>Welcome to Horror Land</title>
+		<!--This is the title of my game-->
+		<!--Cassie Schaaf-->
+		<!--Intro Programming 10.3.2016-->
+		
+		
+		<!--CSS here-->
+		
+		
+		<script type="text/javascript">
+		var score = 0;
+		
+		function changeScore(){
+		document.getElementById("scoreSpot").innerHTML = "Score: " + score;
+		}
+		
+		</script>
+		
+</head>
+		
+<body>
+	
+<div id = "wrapper">
+		<!--Display title of game on game page (5 points)-->
+		<h1>Welcome to Horror Land!</h1>
+		
+		<!--Put a mailto: link on the game page (5 points)-->
+		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
+	
+		<!--Display the text for the starting location of your game in a textarea-->
+<div> <!--Text area-->
+ 		<textarea rows="15"
+			cols="100"
+            id = "taMain"
+            name="taMain">
+A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, "Exclusive Preview" invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You "HAVE to go" they say. 
+
+However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. 
+
+Which direction do you think you should go first?
+        </textarea>
+</div> <!--Text area-->
+
+
+<div id="btns"> <!--buttons-->
+	    <input type="button"
+			class = "button"
+            id = "btnN"
+            name="btnN"
+            value="North" 
+            onclick="changeScore();" />
+			 </br>
+</div> <!--buttons-->
+
+<div>
+<p></p>
+</div>
+
+<div> <!--score display area-->
+	<p id="scoreSpot"></p>
+</div> <!--score display area-->
+
+
+</div> <!-- wrapper-->
+</body>
+</html>
