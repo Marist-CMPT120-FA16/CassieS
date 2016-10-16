@@ -28,19 +28,17 @@
 				margin-right: auto;
 				}
 				
-			/*format buttons*/
+			/*format appearance of buttons*/
 			.button {
 				background-color: #ff3030;
 				border-width:3px;
 				border-radius:5px;
 				border-color:#b22222;
 				color: white;
-				padding: 10px 12px;
-				text-align: center;
 				text-decoration: none;
 				display: inline-block;
 				font-size: 16px;
-				width:25px;
+				text-align:center;
 				}
 				
 			#wrapper {
@@ -48,7 +46,7 @@
 				margin: 0 auto;
 				}
 
-			/*center buttons*/
+			/*center buttons location*/
 			#btns {
 				text-align: center;
 				margin: auto;
@@ -56,53 +54,126 @@
 		</style>
 		
 		<script type="text/javascript">
-		//This script defines the north directional button.
-         function btnNorth_click() {
-			document.getElementById("taMain").value = "You head north. You wind up at 'Death by Coaster', already voted most terrifying coaster in the world.";
-            // Message assigned variable named, well, "message". (Smart, right??)
-            var message = "You head north. You wind up at 'Death by Coaster', already voted most terrifying coaster in the world.";
-            // Text area in the DOM is assigned variable named "targetTextArea".
-            var targetTextArea = document.getElementById("taMain");
-            // The message is assigned to the text of the DOM's text area.
-            targetTextArea.value = message;
-			//Assigns 5 points to the player.
-			//I realize this isn't a great solution, as it's not expandable. Will continue working on function.
-			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
-         }         
+		//4 different locations NSEW (10 points)
+		//Display the text in the textarea for each location as you move (10 points)
+		//Write one event handler function for each button that (10 points)
+		//			1. declares a var message
+		//			2. initialize message that describes location
+		//			3. passes message as a parameter
+		//Keep score ()
+		//***MUSIC***
+		//Redletter Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By Attribution 3.0 //License http://creativecommons.org/licenses/by/3.0/
+
+		
+		
+		//Class script
+		//
+        // Global Variables
+        //         
+         var currentLoc = 0;
+         var score = 0;
+         var navigationErrorCount = 0;
+         var sarcasmThreshold = 5;
          
-		 //This script defines the south directional button.
-         function btnSouth_click() {
-			document.getElementById("taMain").value = "You head south and wind up at the 'Creepy Concession' stand.";
-            var message = "You head south and wind up at the 'Creepy Concession' stand.";
-            var targetTextArea = document.getElementById("taMain");
-            targetTextArea.value = message;
-			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
-         }         
+         var hasVisitedLoc0 = false;
+         var hasVisitedLoc1 = false;
+         var hasVisitedLoc2 = false;
+         var hasVisitedLoc3 = false;
+         var hasVisitedLoc4 = false;
+                  
+         //
+         // Initialization
+         //
+         function init() {
+            look();
+         }
+
+         //
+         // Directional Button Event Handlers
+         //         
+         function btnNorth_click() {
+            if (currentLoc === 0) {
+               currentLoc = 1;
+               look();               
+            } else {
+              if (currentLoc === 3) {
+                 currentLoc = 0;
+                 look();            
+              } else {
+                 navigationError(); 
+              }
+            }            
+         }
 		 
-		 //This script defines the west directional button.
-         function btnWest_click() {
-			document.getElementById("taMain").value = "You can't go west. You came in that way. Try another direction.";
-            var message = "You can't go west. You came in that way. Try another direction.";
-            var targetTextArea = document.getElementById("taMain");
-            targetTextArea.value = message;
-			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
-         }         
-		 //This script defines the east directional button.
-         function btnEast_click() {
-			document.getElementById("taMain").value = "Going east brings you to the 'Haunted Maze'. You REALLY don't want to go in there.";
-            var message = "Going east brings you to the 'Haunted Maze'. You REALLY don't want to go in there.";
-            var targetTextArea = document.getElementById("taMain");
-            targetTextArea.value = message;
-			document.getElementById("scoreSpot").innerHTML="Score: 5 points";
-         }         
+		 
+
+         //
+         // Story / Locale Functions
+         //
+         function look() {
+            var desc = "";
+            switch(currentLoc) {
+               case 0: desc = "Better move quick or someone will find you!";
+                       break;
+               case 1: desc = "You head north. You wind up at 'Death by Coaster', already voted most terrifying coaster in the world.";
+                       break; 
+               case 2: desc = "You head south and wind up at the 'Creepy Concession' stand.";
+                       break;
+               case 3: desc = "You can't go west. You came in that way. Try another direction.";
+                       break;
+               case 4: desc = "Going east brings you to the 'Haunted Maze'. You REALLY don't want to go in there.";
+                       break;
+               default: desc = "You cannot go that way";
+            }
+            checkScore();
+            desc = desc + "\n" + "Score: " + score ;
+            displayMessage(desc);
+         }
+
+         function navigationError() {
+            navigationErrorCount = navigationErrorCount + 1;
+            if (navigationErrorCount < sarcasmThreshold) {
+               displayMessage("You cannot go that way.");
+            } else {
+               displayMessage("DUH! WTF?");
+            }            
+         }
+
+         function checkScore() {
+            if (! hasVisitedLoc0) {            
+               if (currentLoc === 0) {
+                  score = score + 5;
+                  hasVisitedLoc0 = true;
+               }
+            } else if ( (! hasVisitedLoc1) && (currentLoc === 1) ) {            
+                  score = score + 5;
+                  hasVisitedLoc1 = true;
+            } else if ( (! hasVisitedLoc2) && (currentLoc === 2) ) {            
+                  score = score + 5;
+                  hasVisitedLoc2 = true;
+            } else if ( (! hasVisitedLoc3) && (currentLoc === 3) ) {            
+                  score = score + 5;
+                  hasVisitedLoc3 = true;
+            } else if ( (! hasVisitedLoc4) && (currentLoc === 4) ) {            
+                  score = score + 5;
+                  hasVisitedLoc4 = true;
+            }            
+         }
+
+       
 	</script>
 	</head>
 	
-	<body>
+	<body onload="init();">
+	
 	<div id = "wrapper">
+		<!--Display title of game on game page (5 points)-->
 		<h1>Welcome to Fright Park!</h1>
+		
+		<!--Put a mailto: link on the game page (5 points)-->
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
-		    
+	
+		<!--Display the text for the starting location of your game in a textarea-->
  		<textarea rows="15"
                 cols="100"
                 id = "taMain"
@@ -113,39 +184,22 @@ However, in the days afterward, your best friend Sam has gone missing. Everyone 
 
 Which direction do you think you should go first?
         </textarea>
-		
+		<!--Implement 4 buttons-->
+	
  <div id="btns">
-	    <input type="btnNorth"
+	    <input type="button"
 			class = "button"
-             id = "btnN"
-             name="btnN"
-             value="N" 
-             onclick="btnNorth_click();" />
+            id = "btnN"
+            name="btnN"
+            value="North" 
+            onclick="btnNorth_click();" />
 			 </br>
-       
-	   <input type="btnWest"
-			class = "button"
-             id = "btnW"
-             name="btnW"
-             value="W" 
-             onclick="btnWest_click();" />
-        
-	   <input type="btnEast"
-			class = "button"
-             id = "btnE"
-             name="btnE"
-             value="E" 
-             onclick="btnEast_click();" />
-			
-			 	</br>		 
-       <input type="btnSouth"
-			class = "button"
-             id = "btnS"
-             name="btnS"
-             value="S" 
-             onclick="btnSouth_click();" />
+  
 			 
 </div> <!--btns-->
+<div> <!--audio-->
+
+</div>
 <div class="scorebox">
 	<p id="scoreSpot"></p>
 </div> <!-- wrapper-->
