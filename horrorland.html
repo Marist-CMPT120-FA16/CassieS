@@ -15,16 +15,29 @@
 		
 		<script type="text/javascript">
 		var score = 0;
+		var message = 0;
+
 		
 		function changeScore(){
 		document.getElementById("scoreSpot").innerHTML = "Score: " + score;
 		}
+		function displayMessage(){
+		var initialMessage = "A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, Exclusive Preview invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You AVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. Which direction do you think you should go first?";
+		document.getElementById("taMain").innerHTML = initialMessage;
+		}
+		
+		function buttonNorth (){
+		message = "North";
+		document.getElementById("taMain").innerHTML = message;
+		changeScore();
+		}
+
 		
 		</script>
 		
 </head>
 		
-<body>
+<body onload="displayMessage()">
 	
 <div id = "wrapper">
 		<!--Display title of game on game page (5 points)-->
@@ -39,11 +52,7 @@
 			cols="100"
             id = "taMain"
             name="taMain">
-A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, "Exclusive Preview" invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You "HAVE to go" they say. 
 
-However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. 
-
-Which direction do you think you should go first?
         </textarea>
 </div> <!--Text area-->
 
@@ -54,7 +63,7 @@ Which direction do you think you should go first?
             id = "btnN"
             name="btnN"
             value="North" 
-            onclick="changeScore();" />
+            onclick="buttonNorth();" />
 			 </br>
 </div> <!--buttons-->
 
