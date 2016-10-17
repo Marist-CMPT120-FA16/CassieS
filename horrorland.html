@@ -73,12 +73,6 @@
 		//variable for navigation textbox
 		var dir = 0;
 		
-		//Score function
-		function changeScore(){
-		score = scoreMaze + scoreCoaster + scoreMansion + scoreInfestation + scoreConcessions + scoreCircus
-		document.getElementById("scoreSpot").innerHTML = "Score: " + score;
-		}
-		
 		//Sets initial display text through use of look function & current location
 		function initialDisplay(){
 		updateDisplay();
@@ -90,7 +84,8 @@
 		document.getElementById("taMain").innerHTML = "You freaking out or something? You can't go that way!";
 		}
 		
-
+		//Display function
+		//Updates the display each time an event is visited
 		function updateDisplay(){
 			var message = "";
 			switch (currentLoc){
@@ -118,7 +113,16 @@
 			}
 			document.getElementById("taMain").innerHTML = message;
 		}
+						
+		//Score function
+		//Adds scores together only once per location
+		function changeScore(){
+		score = scoreMaze + scoreCoaster + scoreMansion + scoreInfestation + scoreConcessions + scoreCircus
+		document.getElementById("scoreSpot").innerHTML = "Score: " + score;
+		}
 		
+		//Event Handlers for each button/location
+		//Excel file in GitHub indicate the locations
 		function buttonNorth(){
 			if (currentLoc === 0){
 				currentLoc = 2;
@@ -143,6 +147,7 @@
 									}
 									}
 		changeScore();
+		buttonDisable();
 		}
 
 		function buttonSouth(){
@@ -165,6 +170,7 @@
 									}
 									}
 		changeScore();
+		buttonDisable();
 		}			
 			
 		function buttonEast(){
@@ -197,6 +203,7 @@
 									}
 									}
 		changeScore();
+		buttonDisable();
 		}
 		
 		function buttonWest(){
@@ -229,7 +236,50 @@
 									}
 									}
 		changeScore();
+		buttonDisable();
 		}
+		
+		function buttonDisable(){
+		switch (currentLoc){
+		case 0: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = false;				
+			break;
+		case 1: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;	
+			break;
+		case 2: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = false;	
+			break;
+		case 3: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;	
+			break;
+		case 4: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;
+			break;
+		case 5: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = false;
+			break;
+		case 6: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;
+			break;
+		default: ;
+				}
+		}
+		
 		
 		function wrongDir(){
 		document.getElementById("navError").innerHTML = "Oops! Try that again. N, S, E, or W."
