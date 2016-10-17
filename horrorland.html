@@ -8,70 +8,87 @@
 		<!--This is the title of my game-->
 		<!--Cassie Schaaf-->
 		<!--Intro Programming 10.3.2016-->
+
+		<!--CSS here-->		
+		<style type="text/css">
 		
 		
-		<!--CSS here-->
+		</style>
+
 		
 		
 		<script type="text/javascript">
 		var score = 0;
-		var message = 0;
 		var currentLoc = 0;
+		var scoreMaze = 0;
+		var scoreCoaster = 0;
+		var scoreMansion = 0;
+		var scoreInfestation = 0;
+		var scoreConcessions = 0;
+		var scoreCircus = 0;
 		
+		//Score function
 		function changeScore(){
-		score = 5;
+		score = scoreMaze + scoreCoaster + scoreMansion + scoreInfestation + scoreConcessions + scoreCircus
 		document.getElementById("scoreSpot").innerHTML = "Score: " + score;
 		}
 		
-		function displayMessage(){
-		var initialMessage = "A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, Exclusive Preview invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You AVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. Which direction do you think you should go first?";
-		document.getElementById("taMain").innerHTML = initialMessage;
+		//Sets initial display text through use of look function & current location
+		function initialDisplay(){
+		updateDisplay();
 		}
 		
+		//Sets naviation error message
 		function navigationError(){
 		document.getElementById("taMain").innerHTML = "You freaking out or something? You can't go that way!";
 		}
 		
-		function look(){
-			var desc = "";
+
+		function updateDisplay(){
+			var message = "";
 			switch (currentLoc){
-			case 0: desc = "entrance";
-				changeScore ();
+			case 0: message = "A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, Exclusive Preview invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You AVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. Which direction do you think you should go first?";
 				break;
-			case 1: desc = "Death by Coaster";
+			case 1: message = "Death by Coaster";
+					scoreCoaster = 5;
 				break;
-			case 2: desc = "Haunted Mansion";
+			case 2: message = "Haunted Mansion";
+					scoreMansion = 5;
 				break;
-			case 3: desc = "Maze";
+			case 3: message = "Maze";
+					scoreMaze = 5;
 				break;
-			case 4: desc = "Insect Infestation";
+			case 4: message = "Insect Infestation";
+					scoreInfestation = 5;
 				break;
-			case 5: desc = "Creepy Concessions";
+			case 5: message = "Creepy Concessions";
+					scoreConcessions = 5;
 				break;
-			case 6: desc = "Circus of Horrors";
+			case 6: message = "Circus of Horrors";
+					scoreCircus = 5;
 				break;
-			default: desc = "Are you scared? Do you want to leave?";
+			default: message = "Are you scared? Do you want to leave?";
 			}
-			document.getElementById("taMain").innerHTML = desc;
+			document.getElementById("taMain").innerHTML = message;
 		}
 		
 		function buttonNorth(){
 			if (currentLoc === 0){
 				currentLoc = 2;
-				look();}
+				updateDisplay();}
 				else{
 					if (currentLoc === 1){
 					currentLoc = 4;
-					look ();}
+					updateDisplay ();}
 						else{
 							if (currentLoc === 2){
 							currentLoc = 5;
-							look ();
+							updateDisplay ();
 							}
 								else{
 									if (currentLoc === 3){
 									currentLoc = 6;
-									look ();
+									updateDisplay ();
 									}
 									else{
 									navigationError();}
@@ -84,15 +101,15 @@
 		function buttonSouth(){
 			if (currentLoc === 4){
 				currentLoc = 1;
-				look();}
+				updateDisplay();}
 				else{
 					if (currentLoc === 5){
 					currentLoc = 2;
-					look ();}
+					updateDisplay ();}
 						else{
 							if (currentLoc === 6){
 							currentLoc = 3;
-							look ();
+							updateDisplay ();
 							}
 							else{
 							navigationError();
@@ -106,25 +123,25 @@
 		function buttonEast(){
 			if (currentLoc === 0){
 				currentLoc = 3;
-				look();}
+				updateDisplay();}
 				else{
 					if (currentLoc === 1){
 					currentLoc = 2;
-					look ();}
+					updateDisplay ();}
 						else{
 							if (currentLoc === 2){
 							currentLoc = 3;
-							look ();
+							updateDisplay ();
 							}
 								else{
 									if (currentLoc === 4){
 									currentLoc = 5;
-									look ();
+									updateDisplay ();
 									}
 									else{
 										if (currentLoc === 5){
 										currentLoc = 6;
-										look ();
+										updateDisplay ();
 									}
 										else{
 										navigationError();
@@ -138,25 +155,25 @@
 		function buttonWest(){
 			if (currentLoc === 0){
 				currentLoc = 1;
-				look();}
+				updateDisplay();}
 				else{
 					if (currentLoc === 2){
 					currentLoc = 1;
-					look ();}
+					updateDisplay ();}
 						else{
 							if (currentLoc === 3){
 							currentLoc = 2;
-							look ();
+							updateDisplay ();
 							}
 								else{
 									if (currentLoc === 5){
 									currentLoc = 4;
-									look ();
+									updateDisplay ();
 									}
 									else{
 										if (currentLoc === 6){
 										currentLoc = 5;
-										look ();
+										updateDisplay ();
 									}
 										else{
 										navigationError();
@@ -171,7 +188,7 @@
 		
 </head>
 		
-<body onload="displayMessage();">
+<body onload="initialDisplay();">
 	
 <div id = "wrapper">
 		<!--Display title of game on game page (5 points)-->
