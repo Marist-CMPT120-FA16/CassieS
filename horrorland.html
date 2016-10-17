@@ -42,10 +42,16 @@
 				margin: 0 auto;
 				}
 				
-			/*center buttons location*/
+		/*center buttons location*/
 			#btns {
 				text-align: center;
 				margin: auto;
+				}
+			
+		/*navigation error message format*/
+			#navError{
+				color: red;
+				font-style: italic;
 				}
 		
 		</style>
@@ -55,12 +61,17 @@
 		<script type="text/javascript">
 		var score = 0;
 		var currentLoc = 0;
+		
+		//variables for score keeping
 		var scoreMaze = 0;
 		var scoreCoaster = 0;
 		var scoreMansion = 0;
 		var scoreInfestation = 0;
 		var scoreConcessions = 0;
 		var scoreCircus = 0;
+		
+		//variable for navigation textbox
+		var dir = 0;
 		
 		//Score function
 		function changeScore(){
@@ -220,7 +231,29 @@
 		changeScore();
 		}
 		
-		function textbox(){
+		function wrongDir(){
+		document.getElementById("navError").innerHTML = "Oops! Try that again. N, S, E, or W."
+		}
+		
+		function buttonGo(){
+		dir = document.getElementById("box").value;
+		dir = dir.toLowerCase();
+			
+		switch(dir){
+		case "n": 
+		case "north": buttonNorth();
+			break;
+		case "w":
+		case "west": buttonWest();
+			break;
+		case "e": 
+		case "east": buttonEast();
+			break;
+		case "s":
+		case "south": buttonSouth();
+			break;
+		default: wrongDir();
+		}
 		
 		}
 		
@@ -247,9 +280,16 @@
         </textarea>
 </div> <!--Text area-->
 
-<div> <!--text input-->
-<input type="text" id="textBox">
-<input type="button" id="go" value="Go" onclick="buttonGo();">
+<div>
+
+</div>
+
+<div id="textBox"> <!--text input-->
+<input type="text" id="box">
+<input type="button" onclick="buttonGo()" value="Go">
+<p id="navError"></p>
+<p>Would you like to go N, S, E, or W?</p>
+
 </div>
 
 <div id="btns"> <!--buttons-->
