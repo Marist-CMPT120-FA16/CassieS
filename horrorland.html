@@ -11,7 +11,42 @@
 
 		<!--CSS here-->		
 		<style type="text/css">
-		
+		/*format textarea box*/
+			textarea { 
+				display: block;
+				border:0;
+				margin-left: auto;
+				margin-right: auto;
+				}
+				
+		/*format appearance of buttons*/
+			.button {
+				background-color: #ff3030;
+				border-width:3px;
+				border-radius:5px;
+				border-color:#b22222;
+				color: white;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				text-align:center;
+				}
+		/*format disabled buttons*/
+			input:disabled{
+				background-color:#d1d1d1;
+				border-color:#d1d1d1;
+				}
+				
+			#wrapper {
+				max-width: 900px;
+				margin: 0 auto;
+				}
+				
+			/*center buttons location*/
+			#btns {
+				text-align: center;
+				margin: auto;
+				}
 		
 		</style>
 
@@ -36,6 +71,7 @@
 		//Sets initial display text through use of look function & current location
 		function initialDisplay(){
 		updateDisplay();
+		buttonDisable();
 		}
 		
 		//Sets naviation error message
@@ -151,7 +187,7 @@
 									}
 		changeScore();
 		}
-
+		
 		function buttonWest(){
 			if (currentLoc === 0){
 				currentLoc = 1;
@@ -183,7 +219,11 @@
 									}
 		changeScore();
 		}
-			
+		
+		function textbox(){
+		
+		}
+		
 		</script>
 		
 </head>
@@ -207,6 +247,10 @@
         </textarea>
 </div> <!--Text area-->
 
+<div> <!--text input-->
+<input type="text" id="textBox">
+<input type="button" id="go" value="Go" onclick="buttonGo();">
+</div>
 
 <div id="btns"> <!--buttons-->
 	    <input type="button"
@@ -237,10 +281,6 @@
 			 </br>
 			 
 </div> <!--buttons-->
-
-<div>
-<p></p>
-</div>
 
 <div> <!--score display area-->
 	<p id="scoreSpot"></p>
