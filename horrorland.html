@@ -16,7 +16,7 @@
 		<script type="text/javascript">
 		var score = 0;
 		var message = 0;
-
+		var currentLoc = 0;
 		
 		function changeScore(){
 		score = 5;
@@ -28,35 +28,84 @@
 		document.getElementById("taMain").innerHTML = initialMessage;
 		}
 		
-		function buttonNorth (){
-		message = "North";
-		document.getElementById("taMain").innerHTML = message;
-		changeScore();
+		function navigationError(){
+		document.getElementById("taMain").innerHTML = "You freaking out or something? You can't go that way!";
 		}
 		
-		function buttonSouth (){
-		message = "South";
-		document.getElementById("taMain").innerHTML = message;
+		function look(){
+			var desc = "";
+			switch (currentLoc){
+			case 0: desc = "entrance";
+				changeScore ();
+				break;
+			case 1: desc = "Death by Coaster";
+				break;
+			case 2: desc = "Haunted Mansion";
+				break;
+			case 3: desc = "Maze";
+				break;
+			case 4: desc = "Insect Infestation";
+				break;
+			case 5: desc = "Creepy Concessions";
+				break;
+			case 6: desc = "Cirque du Horrors";
+				break;
+			default: desc = "Are you scared? Do you want to leave?";
+			}
+			document.getElementById("taMain").innerHTML = desc;
+		}
+		
+		function buttonNorth(){
+			if (currentLoc === 0){
+				currentLoc = 2;
+				look();
+			}
+				else{
+					if (currentLoc === 0){
+						currentLoc = 0;
+						look ();
+					}
+						else {
+							navigationError();
+						}
 		changeScore();
+				}
 		}
 
-		function buttonEast (){
-		message = "East";
-		document.getElementById("taMain").innerHTML = message;
+		function buttonSouth(){
+		if (currentLoc === 0){
+			currentLoc = navigationError();
+			} else {
+				navigationError();
+					}
 		changeScore();
-		}
-		
-		function buttonWest (){
-		message = "West";
-		document.getElementById("taMain").innerHTML = message;
+			}			
+			
+		function buttonEast(){
+		if (currentLoc === 0){
+			currentLoc = 3;
+			look();
+			} else {
+				navigationError();
+					}
 		changeScore();
-		}
-		
+			}
+
+		function buttonWest(){
+		if (currentLoc === 0){
+			currentLoc = 1;
+			look();
+			} else {
+				navigationError();
+					}
+		changeScore();
+			}	
+			
 		</script>
 		
 </head>
 		
-<body onload="displayMessage()">
+<body onload="displayMessage();">
 	
 <div id = "wrapper">
 		<!--Display title of game on game page (5 points)-->
@@ -84,26 +133,25 @@
             onclick="buttonNorth();" />
 			 </br>
 			 
-		<input type="button"
+	    <input type="button"
+			class = "button"
+            id = "btnE"
+            value="East" 
+            onclick="buttonEast();" />
+			 
+	    <input type="button"
+			class = "button"
+            id = "btnW"
+            value="West" 
+            onclick="buttonWest();" />
+			 </br>
+
+	    <input type="button"
 			class = "button"
             id = "btnS"
             value="South" 
             onclick="buttonSouth();" />
 			 </br>
-		
-		<input type="button"
-			class = "button"
-            id = "btnE"
-            value="East" 
-            onclick="buttonEast();" />
-			 </br>
-
-		<input type="button"
-			class = "button"
-            id = "btnW"
-            value="West" 
-            onclick="buttonWest();" />
-			 </br>			 
 			 
 </div> <!--buttons-->
 
