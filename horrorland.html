@@ -48,7 +48,7 @@
 				break;
 			case 5: desc = "Creepy Concessions";
 				break;
-			case 6: desc = "Cirque du Horrors";
+			case 6: desc = "Circus of Horrors";
 				break;
 			default: desc = "Are you scared? Do you want to leave?";
 			}
@@ -80,33 +80,81 @@
 		}
 
 		function buttonSouth(){
-		if (currentLoc === 0){
-			currentLoc = navigationError();
-			} else {
-				navigationError();
-					}
+			if (currentLoc === 4){
+				currentLoc = 1;
+				look();}
+				else{
+					if (currentLoc === 5){
+					currentLoc = 2;
+					look ();}
+						else{
+							if (currentLoc === 6){
+							currentLoc = 3;
+							look ();
+							}
+
+									}
+									}
 		changeScore();
-			}			
+		}			
 			
 		function buttonEast(){
-		if (currentLoc === 0){
-			currentLoc = 3;
-			look();
-			} else {
-				navigationError();
-					}
+			if (currentLoc === 0){
+				currentLoc = 3;
+				look();}
+				else{
+					if (currentLoc === 1){
+					currentLoc = 2;
+					look ();}
+						else{
+							if (currentLoc === 2){
+							currentLoc = 3;
+							look ();
+							}
+								else{
+									if (currentLoc === 4){
+									currentLoc = 5;
+									look ();
+									}
+									else{
+										if (currentLoc === 5){
+										currentLoc = 6;
+										look ();
+									}
+									}}
+									}
+									}
 		changeScore();
-			}
+		}
 
 		function buttonWest(){
-		if (currentLoc === 0){
-			currentLoc = 1;
-			look();
-			} else {
-				navigationError();
-					}
+			if (currentLoc === 0){
+				currentLoc = 1;
+				look();}
+				else{
+					if (currentLoc === 2){
+					currentLoc = 1;
+					look ();}
+						else{
+							if (currentLoc === 3){
+							currentLoc = 2;
+							look ();
+							}
+								else{
+									if (currentLoc === 5){
+									currentLoc = 4;
+									look ();
+									}
+									else{
+										if (currentLoc === 6){
+										currentLoc = 5;
+										look ();
+									}
+									}}
+									}
+									}
 		changeScore();
-			}	
+		}
 			
 		</script>
 		
@@ -139,19 +187,19 @@
             value="North" 
             onclick="buttonNorth();" />
 			 </br>
-			 
-	    <input type="button"
-			class = "button"
-            id = "btnE"
-            value="East" 
-            onclick="buttonEast();" />
-			 
+
 	    <input type="button"
 			class = "button"
             id = "btnW"
             value="West" 
             onclick="buttonWest();" />
-			 </br>
+			
+	    <input type="button"
+			class = "button"
+            id = "btnE"
+            value="East" 
+            onclick="buttonEast();" />
+			</br>
 
 	    <input type="button"
 			class = "button"
