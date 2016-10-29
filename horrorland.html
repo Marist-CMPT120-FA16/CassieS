@@ -86,8 +86,6 @@
 		//variable for navigation textbox
 		var dir = 0;
 		
-		//v
-		
 		//Sets initial display text through use of updateDisplay function & current location
 		function initialDisplay(){
 		updateDisplay();
@@ -107,23 +105,35 @@
 			switch (currentLoc){
 			case 0: message = "A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, Exclusive Preview invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. Which direction do you think you should go first?";
 				break;
-			case 1: message = "Sneaking quietly along the walkway, the monstrous roller coaster comes into view. Already voted 'Most terrifying ride in the world', the ride twists and turns through the night sky like a snake. 'Death by Coaster.' That HAS to be an exaggeration...right?";
-					scoreCoaster = 5;
-				break;
-			case 2: message = "Like a demented Disney castle, the centerpiece of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home...";
+			case 1: message = "HAUNTED MANSION: Like a demented Disney castle, the centerpiece of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home...";
 					scoreMansion = 5;
 				break;
-			case 3: message = "Taking off of the thousands of corn mazes that arise during the Halloween season, the creators of the Mind-bending Maze bragged about using illusions and homeopathic substances to confuse and disorient people. Luckily, they turn that stuff off at night...";
-					scoreMaze = 5;
-				break;
-			case 4: message = "The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.";
-					scoreInfestation = 5;
-				break;
-			case 5: message = "This place doesn't look that bad. Yeah, it says 'Creepy Confections,' but how bad can a few restaurants be?";
+			case 2: message = "CREEPY CONCESSIONS: This place doesn't look that bad. Yeah, it says 'Creepy Confections,' but how bad can a few restaurants be?";
 					scoreConcessions = 5;
 				break;
-			case 6: message = "A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??";
+			case 3: message = "Zombie Zoo";
+				break;
+			case 4: message = "Children's Show";
+				break;
+			case 1001: message = "MISERY MAZE: Taking off of the thousands of corn mazes that arise during the Halloween season, the creators of the Mind-bending Maze bragged about using illusions and homeopathic substances to confuse and disorient people. Luckily, they turn that stuff off at night...";
+					scoreMaze = 5;
+				break;
+			case 1002: message = "CIRCUS OF HORRORS: A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??";
 					scoreCircus = 5;
+				break;
+			case 1003: message = "SEVERED STADIUM:";
+				break;
+			case 1004: message = "SAFE ZONE:";
+				break;
+			case 2001: message = "DEATH BY COASTER: Sneaking quietly along the walkway, the monstrous roller coaster comes into view. Already voted 'Most terrifying ride in the world', the ride twists and turns through the night sky like a snake. 'Death by Coaster.' That HAS to be an exaggeration...right?";
+					scoreCoaster = 5;
+				break;
+			case 2002: message = "INSECT INFESTATION. The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.";
+					scoreInfestation = 5;
+				break;
+			case 2003: message = "ACRID AQUARIUM:";
+				break;
+			case 2004: message = "COUNTRY CABAL:";
 				break;
 			default: message = "Are you scared? Do you want to leave?";
 			}
@@ -143,127 +153,38 @@
 		
 		//North
 		function buttonNorth(){
-			if (currentLoc === 0){
-				currentLoc = 2;
-				updateDisplay();}
-				else{
-					if (currentLoc === 1){
-					currentLoc = 4;
-					updateDisplay ();}
-						else{
-							if (currentLoc === 2){
-							currentLoc = 5;
-							updateDisplay ();
-							}
-								else{
-									if (currentLoc === 3){
-									currentLoc = 6;
-									updateDisplay ();
-									}
-									else{
-									navigationError();}
-									}
-									}
-									}
+			currentLoc = currentLoc + 1;
 		changeScore();
-		buttonDisable();
+		//buttonDisable();
+		updateDisplay ();
 		}
 
 		//South
 		function buttonSouth(){
-			if (currentLoc === 4){
-				currentLoc = 1;
-				updateDisplay();}
-				else{
-					if (currentLoc === 5){
-					currentLoc = 2;
-					updateDisplay ();}
-						else{
-							if (currentLoc === 6){
-							currentLoc = 3;
-							updateDisplay ();
-							}
-							else{
-							navigationError();
-							}
-
-									}
-									}
+				currentLoc = currentLoc - 1;
 		changeScore();
-		buttonDisable();
+		//buttonDisable();
+		updateDisplay();
 		}			
-		
 		
 		//East
 		function buttonEast(){
-			if (currentLoc === 0){
-				currentLoc = 3;
-				updateDisplay();}
-				else{
-					if (currentLoc === 1){
-					currentLoc = 2;
-					updateDisplay ();}
-						else{
-							if (currentLoc === 2){
-							currentLoc = 3;
-							updateDisplay ();
-							}
-								else{
-									if (currentLoc === 4){
-									currentLoc = 5;
-									updateDisplay ();
-									}
-									else{
-										if (currentLoc === 5){
-										currentLoc = 6;
-										updateDisplay ();
-									}
-										else{
-										navigationError();
-										}
-									}}
-									}
-									}
+			currentLoc = currentLoc + 1000;
 		changeScore();
-		buttonDisable();
+		//buttonDisable();
+		updateDisplay();
 		}
 		
 		
 		//West
 		function buttonWest(){
-			if (currentLoc === 0){
-				currentLoc = 1;
-				updateDisplay();}
-				else{
-					if (currentLoc === 2){
-					currentLoc = 1;
-					updateDisplay ();}
-						else{
-							if (currentLoc === 3){
-							currentLoc = 2;
-							updateDisplay ();
-							}
-								else{
-									if (currentLoc === 5){
-									currentLoc = 4;
-									updateDisplay ();
-									}
-									else{
-										if (currentLoc === 6){
-										currentLoc = 5;
-										updateDisplay ();
-									}
-										else{
-										navigationError();
-										}
-									}}
-									}
-									}
+			currentLoc = currentLoc -1000;
 		changeScore();
-		buttonDisable();
+		//buttonDisable();
+		updateDisplay();
 		}
 		
-		
+		/*
 		//Disables buttons that are not applicable based on current location
 		function buttonDisable(){
 		switch (currentLoc){
@@ -305,7 +226,7 @@
 		default: ;
 				}
 		}
-		
+		*/
 		
 		//Returns an error message if user enters text that is not NSEW
 		function wrongDir(){
