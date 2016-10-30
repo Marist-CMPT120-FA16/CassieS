@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+		<meta charset = "utf-8">
+		<title>Welcome to Horror Land</title>
+		<!--This is the title of my game-->
+		<!--Cassie Schaaf-->
+		<!--Intro Programming 10.3.2016-->
+
+		<!--CSS here-->		
+		<style type="text/css">
+		/*format textarea box*/
+			textarea { 
+				display: block;
+				border:0;
+				margin-left: auto;
+				margin-right: auto;
+				}
+		/* header font*/
+			h1 {
+				color:#990000;
+				}
+				
+		/*format appearance of buttons*/
+			.button {
+				background-color: #990000;
+				border-width:3px;
+				border-radius:5px;
+				border-color:#b22222;
+				color: white;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				text-align:center;
+				}
+				
+		/*format disabled buttons*/
+			input:disabled{
+				background-color:#d1d1d1;
+				border-color:#d1d1d1;
+				}
+		/*format page*/
+			#wrapper {
+				max-width: 900px;
+				margin: 0 auto;
+				}
+				
+		/*format buttons location*/
+			#btns {
+				text-align: center;
+				margin: auto;
+				}
+		
+		/*navigation error message format*/
+			#navError{
+				color: red;
+				font-style: italic;
+				}
+				
+		/*format score box*/
+			#score{
+				color: #990000;
+				}
+		
+		</style>
+
+		
+		
+		<script type="text/javascript">
+		
+		var score = 0;
+		var currentLoc = 0;
+		
+		//variables for score keeping
+		var scoreMaze = 0;
+		var scoreCoaster = 0;
+		var scoreMansion = 0;
+		var scoreInfestation = 0;
+		var scoreConcessions = 0;
+		var scoreCircus = 0;
+		
+		//variable for navigation textbox
+		var dir = 0;
+		
+		//Sets initial display text through use of updateDisplay function & current location
+		function initialDisplay(){
+		document.getElementById("taMain").innerHTML = "A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, Exclusive Preview invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. Which direction do you think you should go first?";
+		buttonDisable();
+		}
+		
+		//Sets naviation error message
+		function navigationError(){
+		document.getElementById("taMain").innerHTML = "Don't freak out! You can't go that way. You're at the edge of the park!";
+		}
+		
+		//Display function
+		//Updates the display each time an event is visited
+		//Assigns each location a score value
+		function updateDisplay(){
+			var message = "";
+			switch (currentLoc){
+			case 0: message = "A new amusement park, Fright Park, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, Exclusive Preview invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you've jumped the fence of the park. The full, low moon lights your way. Which direction do you think you should go first?";
+				break;
+			case 1: message = "HAUNTED MANSION: Like a demented Disney castle, the centerpiece of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home...";
+					scoreMansion = 5;
+				break;
+			case 2: message = "CREEPY CONCESSIONS: This place doesn't look that bad. Yeah, it says 'Creepy Confections,' but how bad can a few restaurants be?";
+					scoreConcessions = 5;
+				break;
+			case 3: message = "Zombie Zoo";
+			
+				break;
+			case 4: message = "Children's Show";
+				break;
+			case 1001: message = "MISERY MAZE: Taking off of the thousands of corn mazes that arise during the Halloween season, the creators of the Mind-bending Maze bragged about using illusions and homeopathic substances to confuse and disorient people. Luckily, they turn that stuff off at night...";
+					scoreMaze = 5;
+				break;
+			case 1002: message = "CIRCUS OF HORRORS: A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??";
+					scoreCircus = 5;
+				break;
+			case 1003: message = "SEVERED STADIUM:";
+				break;
+			case 1004: message = "SAFE ZONE:";
+				break;
+			case 2001: message = "DEATH BY COASTER: Sneaking quietly along the walkway, the monstrous roller coaster comes into view. Already voted 'Most terrifying ride in the world', the ride twists and turns through the night sky like a snake. 'Death by Coaster.' That HAS to be an exaggeration...right?";
+					scoreCoaster = 5;
+				break;
+			case 2002: message = "INSECT INFESTATION. The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.";
+					scoreInfestation = 5;
+				break;
+			case 2003: message = "ACRID AQUARIUM:";
+				break;
+			case 2004: message = "COUNTRY CABAL:";
+				break;
+			default: message = "Are you scared? Do you want to leave?";
+			}
+			document.getElementById("taMain").innerHTML = message;
+		}
+								
+		//Score function
+		//Totals scores together (only once per location)
+		function changeScore(){
+		score = scoreMaze + scoreCoaster + scoreMansion + scoreInfestation + scoreConcessions + scoreCircus
+		document.getElementById("scoreSpot").innerHTML = "Score: " + score;
+		}
+		
+		//Event Handlers for each button/location
+		//Excel file in GitHub indicate the locations
+		//Runs score code and disables buttons at the end of each move
+		
+		//North
+		function buttonNorth(){
+			currentLoc = currentLoc + 1;
+		changeScore();
+		buttonDisable();
+		updateDisplay ();
+		}
+		//South
+		function buttonSouth(){
+				currentLoc = currentLoc - 1;
+		changeScore();
+		buttonDisable();
+		updateDisplay();
+		}			
+		
+		//East
+		function buttonEast(){
+			currentLoc = currentLoc + 1000;
+		changeScore();
+		buttonDisable();
+		updateDisplay();
+		}
+		
+		
+		//West
+		function buttonWest(){
+			currentLoc = currentLoc -1000;
+		changeScore();
+		buttonDisable();
+		updateDisplay();
+		}
+		
+
+		//Disables buttons that are not applicable based on current location
+		function buttonDisable(){
+		switch (currentLoc){
+		//South off
+		case 1001: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false; 
+				document.getElementById("btnW").disabled = false;			
+			break;
+		//South West off
+		case 1: document.getElementById("btnN").disabled = false; 
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;	
+			break;
+		//West off
+		case 2||3: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;	
+			break;
+		//South East off
+		case 2001: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;	
+			break;
+		//North West off
+		case 4: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;
+			break;
+		//North off
+		case 1004: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = false;
+			break;
+		//East off
+		case 2003||2002: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;
+			break;
+		//North East off
+		case 2004: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;
+			break;
+		//East West South off
+		case 0: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = true;
+			break;
+		default: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = false;
+				}
+		}
+
+		
+		//Returns an error message if user enters text that is not NSEW
+		function wrongDir(){
+		document.getElementById("navError").innerHTML = "Oops! Try that again. N, S, E, or W."
+		}
+		
+		
+		//Changes data entered into all lowercase
+		//Launches appropriate button function based on NSEW text entered
+		function buttonGo(){
+		dir = document.getElementById("box").value;
+		dir = dir.toLowerCase();
+			
+		switch(dir){
+		case "n": 
+		case "north": buttonNorth();
+			break;
+		case "w":
+		case "west": buttonWest();
+			break;
+		case "e": 
+		case "east": buttonEast();
+			break;
+		case "s":
+		case "south": buttonSouth();
+			break;
+		default: wrongDir();
+		}		
+		}
+		
+		</script>
+		
+</head>
+		
+<body onload="initialDisplay();">
+	
+<div id = "wrapper">
+		<!--Display title of game on game page-->
+		<h1>Welcome to Horror Land!</h1>
+		
+<div id="score"> <!--score display area-->
+	<p id="scoreSpot" class="scoreSpot"></p>
+</div><!--score display area-->
+
+<div> <!--Text area-->
+
+ 		<textarea rows="15"
+			cols="100"
+            id = "taMain"
+            name="taMain">
+        </textarea>
+		
+</div> <!--Text area-->
+
+
+<div id="textBox"> <!--navigation text input-->
+
+<input type="text" id="box">
+<input type="button" class="button" onclick="buttonGo()" value="Go">
+<p id="navError"></p>
+<p>Would you like to go N, S, E, or W?</p>
+
+</div> <!--navigation text input-->
+
+<div id="btns"> <!--navigation buttons-->
+	    <input type="button"
+			class = "button"
+            id = "btnN"
+            value="North" 
+            onclick="buttonNorth();" />
+			 </br>
+
+	    <input type="button"
+			class = "button"
+            id = "btnW"
+            value="West" 
+            onclick="buttonWest();" />
+			
+	    <input type="button"
+			class = "button"
+            id = "btnE"
+            value="East" 
+            onclick="buttonEast();" />
+			</br>
+
+	    <input type="button"
+			class = "button"
+            id = "btnS"
+            value="South" 
+            onclick="buttonSouth();" />
+			 </br>
+			 
+</div> <!--navigation buttons-->
+
+		<!--Put a mailto: link on the game page -->
+		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
+
+</div> <!-- wrapper-->
+</body>
+</html>
