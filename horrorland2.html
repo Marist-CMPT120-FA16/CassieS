@@ -253,13 +253,16 @@
 		document.getElementById("navError").innerHTML = "Oops! Try that again. N, S, E, or W."
 		}
 		
+		function scaredyCat(){
+		document.getElementById("taMain").innerHTML = "Coward!"}
+		
 		
 		//Changes data entered into all lowercase
 		//Launches appropriate button function based on NSEW text entered
 		function buttonGo(){
 		dir = document.getElementById("box").value;
 		dir = dir.toLowerCase();
-			
+		document.getElementById("navError").innerHTML = ""	
 		switch(dir){
 		case "n": 
 		case "north": buttonNorth();
@@ -272,6 +275,9 @@
 			break;
 		case "s":
 		case "south": buttonSouth();
+			break;
+		case "y":
+		case "yes": scaredyCat();
 			break;
 		default: wrongDir();
 		}		
