@@ -114,6 +114,8 @@
 				break;
 			case 4: message = "Children's Show";
 				break;
+			case 5: message = "You've hit the gate. Enter S or South to get back."
+				break;
 			case 1001: message = "MISERY MAZE: Taking off of the thousands of corn mazes that arise during the Halloween season, the creators of the Mind-bending Maze bragged about using illusions and homeopathic substances to confuse and disorient people. Luckily, they turn that stuff off at night...";
 					scoreMaze = 5;
 				break;
@@ -124,6 +126,8 @@
 				break;
 			case 1004: message = "SAFE ZONE:";
 				break;
+			case 1005: messsage = "You've hit the gate. Enter S or South to get back."
+				break;
 			case 2001: message = "DEATH BY COASTER: Sneaking quietly along the walkway, the monstrous roller coaster comes into view. Already voted 'Most terrifying ride in the world', the ride twists and turns through the night sky like a snake. 'Death by Coaster.' That HAS to be an exaggeration...right?";
 					scoreCoaster = 5;
 				break;
@@ -133,6 +137,20 @@
 			case 2003: message = "ACRID AQUARIUM:";
 				break;
 			case 2004: message = "COUNTRY CABAL:";
+				break;
+			case 2005: message = "You've hit the gate. Enter S or South to get back."
+				break;
+			case 3001:
+			case 3002:
+			case 3003:
+			case 3004: message = "You've hit the gate. Enter W or West to get back.";
+				break;
+			case -996:
+			case -997:
+			case -998:
+			case -999: message = "You've hit the gate. Enter E or East to get back.";
+				break;
+			case '0,1000,2000': message = "You've hit the gate. Enter N or North to get back.";
 				break;
 			default: message = "Are you scared? Do you want to leave?";
 			}
