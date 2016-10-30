@@ -10,65 +10,7 @@
 		<!--Intro Programming 10.3.2016-->
 
 		<!--CSS here-->		
-		<style type="text/css">
-		/*format textarea box*/
-			textarea { 
-				display: block;
-				border:0;
-				margin-left: auto;
-				margin-right: auto;
-				}
-		/* header font*/
-			h1 {
-				color:#990000;
-				}
-				
-		/*format appearance of buttons*/
-			.button {
-				background-color: #990000;
-				border-width:3px;
-				border-radius:5px;
-				border-color:#b22222;
-				color: white;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				text-align:center;
-				}
-				
-		/*format disabled buttons*/
-			input:disabled{
-				background-color:#d1d1d1;
-				border-color:#d1d1d1;
-				}
-		/*format page*/
-			#wrapper {
-				max-width: 900px;
-				margin: 0 auto;
-				}
-				
-		/*format buttons location*/
-			#btns {
-				text-align: center;
-				margin: auto;
-				}
-		
-		/*navigation error message format*/
-			#navError{
-				color: red;
-				font-style: italic;
-				}
-				
-		/*format score box*/
-			#score{
-				color: #990000;
-
-				}
-
-		
-		</style>
-
-		
+		<link rel="stylesheet" type="text/css" href="horrorlandstyle.css">
 		
 		<script type="text/javascript">
 		
@@ -107,25 +49,18 @@
 				break;
 			case 1: message = "HAUNTED MANSION: Like a demented Disney castle, the centerpiece of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home...";
 					scoreMansion = 5;
-					southOff();
-					westOff();
 				break;
 			case 2: message = "CREEPY CONCESSIONS: This place doesn't look that bad. Yeah, it says 'Creepy Confections,' but how bad can a few restaurants be?";
 					scoreConcessions = 5;
-					westOff();
 				break;
 			case 3: message = "Zombie Zoo";
-					scoreConcessions = 5;
-					westOff();
+					scoreConcessions = 5;					
 				break;
 			case 4: message = "Children's Show";
 					scoreConcessions = 5;
-					westOff();
-					northOff();
 				break;
 			case 1001: message = "MISERY MAZE: Taking off of the thousands of corn mazes that arise during the Halloween season, the creators of the Mind-bending Maze bragged about using illusions and homeopathic substances to confuse and disorient people. Luckily, they turn that stuff off at night...";
 					scoreMaze = 5;
-					southOff();
 				break;
 			case 1002: message = "CIRCUS OF HORRORS: A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??";
 					scoreCircus = 5;
@@ -199,67 +134,7 @@
 		function southOn(){
 			document.getElementById("buttonSouth").disabled = false;
 			}
-		//North on/off
-		function northOff(){
-			document.getElementById("buttonNorth").disabled = true;
-			}
-				function northOff(){
-			document.getElementById("buttonNorth").disabled = false;
-			}
-		//East on/off
-		function eastOff(){
-			document.getElementById("buttonEast").disabled = true;
-			}
-		function eastOff(){
-			document.getElementById("buttonEast").disabled = false;
-			}
-		//West on/off
-		function westOff(){
-			document.getElementById("buttonWest").disabled = true;
-			}
-		function westOff(){
-			document.getElementById("buttonWest").disabled = false;
-			}
-		/*
-		//Disables buttons that are not applicable based on current location
-		function buttonDisable(){
-		switch (currentLoc){
-		case currentLoc%10=4: southOff;				
-			break;
-		case 1: document.getElementById("btnN").disabled = false;
-				document.getElementById("btnS").disabled = true;
-				document.getElementById("btnE").disabled = false;
-				document.getElementById("btnW").disabled = true;	
-			break;
-		case 2: document.getElementById("btnN").disabled = false;
-				document.getElementById("btnS").disabled = true;
-				document.getElementById("btnE").disabled = false;
-				document.getElementById("btnW").disabled = false;	
-			break;
-		case 3: document.getElementById("btnN").disabled = false;
-				document.getElementById("btnS").disabled = true;
-				document.getElementById("btnE").disabled = true;
-				document.getElementById("btnW").disabled = false;	
-			break;
-		case 4: document.getElementById("btnN").disabled = true;
-				document.getElementById("btnS").disabled = false;
-				document.getElementById("btnE").disabled = false;
-				document.getElementById("btnW").disabled = true;
-			break;
-		case 5: document.getElementById("btnN").disabled = true;
-				document.getElementById("btnS").disabled = false;
-				document.getElementById("btnE").disabled = false;
-				document.getElementById("btnW").disabled = false;
-			break;
-		case 6: document.getElementById("btnN").disabled = true;
-				document.getElementById("btnS").disabled = false;
-				document.getElementById("btnE").disabled = true;
-				document.getElementById("btnW").disabled = false;
-			break;
-		default: ;
-				}
-		}
-		*/
+
 		
 		//Returns an error message if user enters text that is not NSEW
 		function wrongDir(){
@@ -330,7 +205,7 @@
             id = "btnN"
             value="North" 
             onclick="buttonNorth();" />
-			 </br>
+			 <br>
 
 	    <input type="button"
 			class = "button"
@@ -343,14 +218,14 @@
             id = "btnE"
             value="East" 
             onclick="buttonEast();" />
-			</br>
+			<br>
 
 	    <input type="button"
 			class = "button"
             id = "btnS"
             value="South" 
             onclick="buttonSouth();" />
-			 </br>
+			 <br>
 			 
 </div> <!--navigation buttons-->
 
