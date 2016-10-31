@@ -189,8 +189,7 @@
 		changeScore();
 		buttonDisable();
 		updateDisplay();
-		}
-		
+		}		
 		
 		//West
 		function buttonWest(){
@@ -280,7 +279,7 @@
 		function buttonGo(){
 		dir = document.getElementById("box").value;
 		dir = dir.toLowerCase();
-		document.getElementById("navError").innerHTML = ""	
+		document.getElementById("navError").innerHTML = "";
 		switch(dir){
 		case "n": 
 		case "north": buttonNorth();
@@ -299,6 +298,11 @@
 			break;
 		default: wrongDir();
 		}		
+		}
+		
+		//Help button
+		function helpMe(){
+			document.getElementById("help").innerHTML = "Here is some help";
 		}
 		
 		</script>
@@ -341,7 +345,7 @@
             id = "btnN"
             value="North" 
             onclick="buttonNorth();" />
-			 </br>
+			<br>
 
 	    <input type="button"
 			class = "button"
@@ -354,16 +358,28 @@
             id = "btnE"
             value="East" 
             onclick="buttonEast();" />
-			</br>
+			<br>
 
 	    <input type="button"
 			class = "button"
             id = "btnS"
             value="South" 
             onclick="buttonSouth();" />
-			 </br>
+			<br>
 			 
 </div> <!--navigation buttons-->
+
+<div> <!--help display-->
+	    <input type="button"
+			class = "button"
+            value="Help" 
+            onclick="helpMe();"/>
+		<textarea rows="5"
+			cols="50"
+            id = "help"
+            name="help">
+        </textarea>
+</div>
 
 		<!--Put a mailto: link on the game page -->
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
