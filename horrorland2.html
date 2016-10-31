@@ -46,7 +46,14 @@
 				max-width: 900px;
 				margin: 0 auto;
 				}
-				
+			
+		/*Main text area & list*/
+			#main {
+				max-width: 75%;)
+				}
+			#bag {
+				max-width: 25%;
+				}
 		/*format buttons location*/
 			#btns {
 				text-align: center;
@@ -66,8 +73,9 @@
 		
 		/*map formatting*/
 			#map{
-				width: 100px;
+				width:75%;
 			}
+		
 		</style>
 
 		
@@ -77,7 +85,7 @@
 		var score = 0;
 		var currentLoc = 0;
 		
-		//variables for score keeping
+		//variables for score keeping & items
 		var scoreMaze = 0;
 		var scoreCoaster = 0;
 		var scoreMansion = 0;
@@ -90,6 +98,8 @@
 		var scoreWater = 0;
 		var scoreWest = 0;
 		var scoreAquarium = 0;
+		var bag = [];
+		var item = 0;
 				
 		//variable for navigation textbox
 		var dir = 0;
@@ -118,11 +128,13 @@
 		function updateDisplay(){
 			var message = "";
 			switch (currentLoc){
-			case 1: message = "HAUNTED MANSION: Like a demented Disney castle, the centerpiece of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home...";
+			case 1: message = "HAUNTED MANSION: Like a demented Disney castle, the centerpiece of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home... Wait, something is glimmering on the ground catches your eye. It's a set of keys. Do you want to take it? Just in case?";
 				scoreMansion = 5;
+				item = "key";
 				break;
 			case 2: message = "CIRCUS OF HORRORS: A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??";
-				document.getElementById("take").disabled = true;
+				item = "book";
+				document.getElementById("take").disabled = false;
 				scoreCircus = 5;
 				break;
 			case 3: message = "Children's Show";
@@ -230,7 +242,12 @@
 		updateDisplay();
 		}
 		
-
+		//Take
+		function takeItem(){
+			bag.push(item);
+			document.getElementById("bag").innerHTML = bag;
+		}
+		
 		//Disables buttons that are not applicable based on current location
 		function buttonDisable(){
 		switch (currentLoc){
@@ -361,7 +378,7 @@
 	<p id="scoreSpot" class="scoreSpot"></p>
 </div><!--score display area-->
 
-<div> <!--Text area-->
+<div id="main"> <!--Text area-->
 
  		<textarea rows="15"
 			cols="100"
@@ -371,6 +388,16 @@
 		
 </div> <!--Text area-->
 
+<div> <!--Bag of holding--> 
+<!--Known issue: Can collect single item multiple times-->
+<!--Known issue: General alignment of divs-->
+<p>Items:
+		<textarea
+            id = "bag"
+            name="bag">
+        </textarea>
+		</p>
+</div>
 
 <div id="textBox"> <!--navigation text input-->
 
@@ -381,6 +408,8 @@
 <p>Would you like to TAKE that item?</p>
 
 </div> <!--navigation text input-->
+
+<!--List of items-->
 
 <div id="btns"> <!--navigation buttons-->
 	    <input type="button"
@@ -413,7 +442,7 @@
 			class = "button"
 			 id = "take"
 			 value = "Take"
-			 onclick = "pickUp();" />
+			 onclick = "takeItem();" />
 </div> <!--navigation buttons-->
 
 <div> <!--help display-->
@@ -427,11 +456,14 @@
             name="help">
         </textarea>
 </div>
+
 <!--Map-->
-<div id="map">
-<img src = "file:///C:\Users\Cassie Chapman\Desktop\mapprototype.png">
+<!--Known issue: better map, in progress-->
+<div >
+<img id="map" src = "file:///C:\Users\Cassie Chapman\Desktop\mapprototype.png">
 </div>
-		<!--Put a mailto: link on the game page -->
+
+<!--Put a mailto: link on the game page -->
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
 
 </div> <!-- wrapper-->
