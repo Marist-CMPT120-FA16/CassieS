@@ -3,6 +3,16 @@
 <html>
 
 <head>
+
+		<!--KNOWN ISSUES:
+			*Score not adding on first click to location
+			*Event Handlers for each button/location: Not sure if I did this right. 
+			    -If not, not really sure I know what this means.
+			*Can collect single item multiple times, every time button is clicked -FIXED, disabled button after clicking
+				*ISSUE NOW: keeping disabled after visiting location once
+			*General alignment of divs
+			*Better map, in progress-->
+		
 		<meta charset = "utf-8">
 		<title>Welcome to Horror Land</title>
 		<!--This is the title of my game-->
@@ -123,8 +133,9 @@
 		}
 		
 		//Display function
-		//Updates the display each time an event is visited
+		//Updates the display each time a site is visited
 		//Assigns each location a score value
+		//If a location has an item, lists item
 		function updateDisplay(){
 			var message = "";
 			switch (currentLoc){
@@ -207,8 +218,8 @@
 			document.getElementById("taMain").innerHTML = message;
 		}
 								
-		//Event Handlers for each button/location
-		//Excel file in GitHub indicate the locations
+
+		//Excel file in GitHub indicates the locations
 		//Runs score code and disables buttons at the end of each move
 		
 		//North
@@ -242,10 +253,11 @@
 		updateDisplay();
 		}
 		
-		//Take
-		function takeItem(){
+		//Add item to bag and list on page
+		function listItem(){
 			bag.push(item);
 			document.getElementById("bag").innerHTML = bag;
+			document.getElementById("take").disabled = true;	
 		}
 		
 		//Disables buttons that are not applicable based on current location
@@ -314,12 +326,12 @@
 				}
 		}
 
-		
 		//Returns an error message if user enters text that is not NSEW
 		function wrongDir(){
 		document.getElementById("navError").innerHTML = "Oops! Try that again. N, S, E, or W."
 		}
 		
+		//Nut job wants to quit my awesome game *only applies to text navigators who go beyond borders
 		function scaredyCat(){
 		document.getElementById("taMain").innerHTML = "Coward!"}
 		
@@ -354,16 +366,6 @@
 		function helpMe(){
 			document.getElementById("help").innerHTML = "Here is some help";
 		}
-		
-		//Pick up items
-		function pickUp(){
-		
-		}
-		
-		//Display items
-		function displayItems(){
-		}
-		
 		</script>
 		
 </head>
@@ -379,52 +381,47 @@
 </div><!--score display area-->
 
 <div id="main"> <!--Text area-->
-
  		<textarea rows="15"
 			cols="100"
             id = "taMain"
             name="taMain">
         </textarea>
-		
 </div> <!--Text area-->
 
 <div> <!--Bag of holding--> 
-<!--Known issue: Can collect single item multiple times-->
-<!--Known issue: General alignment of divs-->
 <p>Items:
 		<textarea
             id = "bag"
             name="bag">
         </textarea>
 		</p>
-</div>
+</div> <!--Bag of holding-->
 
 <div id="textBox"> <!--navigation text input-->
-
 <input type="text" id="box">
 <input type="button" class="button" onclick="buttonGo()" value="Go">
 <p id="navError"></p>
 <p>Would you like to go N, S, E, or W?</p>
 <p>Would you like to TAKE that item?</p>
-
 </div> <!--navigation text input-->
 
-<!--List of items-->
-
+<!--Buttons-->
 <div id="btns"> <!--navigation buttons-->
-	    <input type="button"
+	    <!--North-->
+		<input type="button"
 			class = "button"
             id = "btnN"
             value="North" 
             onclick="buttonNorth();" />
 			<br>
-
+		<!--West-->
 	    <input type="button"
 			class = "button"
             id = "btnW"
             value="West" 
             onclick="buttonWest();" />
-			
+		
+		<!--East-->
 	    <input type="button"
 			class = "button"
             id = "btnE"
@@ -432,18 +429,21 @@
             onclick="buttonEast();" />
 			<br>
 
+		<!--South-->
 	    <input type="button"
 			class = "button"
             id = "btnS"
             value="South" 
             onclick="buttonSouth();" />
 			<br>
+		
+		<!--Take items-->
 		<input type= "button"
 			class = "button"
 			 id = "take"
-			 value = "Take"
-			 onclick = "takeItem();" />
-</div> <!--navigation buttons-->
+			 value = "Take Item"
+			 onclick = "listItem();" />
+</div> <!--buttons-->
 
 <div> <!--help display-->
 	    <input type="button"
@@ -455,13 +455,12 @@
             id = "help"
             name="help">
         </textarea>
-</div>
+</div> <!--help display-->
 
-<!--Map-->
-<!--Known issue: better map, in progress-->
-<div >
+
+<div > <!--Map-->
 <img id="map" src = "file:///C:\Users\Cassie Chapman\Desktop\mapprototype.png">
-</div>
+</div> <!--Map-->
 
 <!--Put a mailto: link on the game page -->
 		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
