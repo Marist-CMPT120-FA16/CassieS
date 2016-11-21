@@ -52,13 +52,14 @@
 				item = key.desc;
 				break;
 			case 2: message = circus.desc;
-				item = "book";
 				document.getElementById("take").disabled = false;
 				scoreCircus = 5;
+				item = note.desc;
 				break;
 			case 3: message = children.desc;
 				document.getElementById("take").disabled = true;
 				scoreChildren = 5;
+				item = blank.desc;
 				break;
 			case 4: message = zoo.desc;
 				item = "card";
@@ -281,6 +282,15 @@ var locArray = [];
 function Item(itemId, desc){
 	this.itemId = itemId;
 	this.desc = desc;
+	this.take = function (){
+		this.desc.push(bagHolding);
+		document.getElementById("item").innerHTML = ("You have picked up the " + this.desc)
+		this.desc.push
+	}
+	this.drop = function (){
+		this.desc.pop(bagHolding);
+		document.getElementById("item").innerHTML = ("You have dropped up the " + this.desc)
+	}
 }
 
 var key = new Item(1,"You see a glimmer on the ground. It's a key.");
@@ -293,14 +303,16 @@ var rope = new Item(4,"A length of rope is laying by the side of the building.")
 
 var bagHolding = [];
 
-function takeItem(){
+/*function takeItem(){
 	items.push(bagHolding);
+	x = 
+	document.getElementById("item").innerHTML = "You have picked up the " + x.desc)
 }
 
 function dropItem(){
 	items.pop(x);
 }
-
+*/
 //	this.west = dirWest;
 //	this.east = dirEast;
 //	this.south = dirSouth;
