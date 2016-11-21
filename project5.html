@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+		<!--Cassie Schaaf, Intro Programming-->
+
+		<!--KNOWN ISSUES:
+			*Score not adding on first click to location suddenly. Need to investigate.
+			*Event Handlers for each button/location: Not sure if I did this right. 
+			    -If not, not really sure I know what this means.
+			*Can collect single item multiple times, every time button is clicked -FIXED, disabled button after clicking
+				*ISSUE NOW: keeping disabled after visiting location once
+			*General alignment of divs
+			*Better map, in progress
+			-->
+		
+		<meta charset = "utf-8">
+		<title>Welcome to Horror Land</title>
+		<!--This is the title of my game-->
+		<!--Cassie Schaaf-->
+		<!--Intro Programming 10.3.2016-->
+
+		<!--CSS here-->		
+		<link type = "text/css" rel = "stylesheet" href = "horrorland.css">
+	
+		
+		<script type="text/javascript" src = "horrorland.js"></script>
+		
+</head>
+		
+<body onload="initialDisplay();">
+	
+<div id = "wrapper">
+		<!--Display title of game on game page-->
+		<h1>Welcome to Horror Land!</h1>
+		
+<div id="score"> <!--score display area-->
+	<p id="scoreSpot" class="scoreSpot"></p>
+</div><!--score display area-->
+
+<div id="main"> <!--Text area-->
+ 		<textarea rows="15"
+			cols="100"
+            id = "taMain"
+            name="taMain">
+        </textarea>
+</div> <!--Text area-->
+
+<div> <!--Bag of holding--> 
+<p>Items:
+		<textarea
+            id = "bag"
+            name="bag">
+        </textarea>
+		</p>
+</div> <!--Bag of holding-->
+
+<div id="textBox"> <!--navigation text input-->
+<input type="text" id="box">
+<input type="button" class="button" onclick="buttonGo()" value="Go">
+<p id="navError"></p>
+<p>Would you like to go N, S, E, or W?</p>
+<p>Would you like to TAKE that item?</p>
+</div> <!--navigation text input-->
+
+<!--Buttons-->
+<div id="btns"> <!--navigation buttons-->
+	    <!--North-->
+		<input type="button"
+			class = "button"
+            id = "btnN"
+            value="North" 
+            onclick="buttonNorth();" />
+			<br>
+		<!--West-->
+	    <input type="button"
+			class = "button"
+            id = "btnW"
+            value="West" 
+            onclick="buttonWest();" />
+		
+		<!--East-->
+	    <input type="button"
+			class = "button"
+            id = "btnE"
+            value="East" 
+            onclick="buttonEast();" />
+			<br>
+
+		<!--South-->
+	    <input type="button"
+			class = "button"
+            id = "btnS"
+            value="South" 
+            onclick="buttonSouth();" />
+			<br>
+		
+		<!--Take items-->
+		<input type= "button"
+			class = "button"
+			 id = "take"
+			 value = "Take Item"
+			 onclick = "listItem();" />
+</div> <!--buttons-->
+
+<div> <!--help display-->
+	    <input type="button"
+			class = "button"
+            value="Help" 
+            onclick="helpMe();"/>
+		<textarea rows="5"
+			cols="50"
+            id = "help"
+            name="help">
+        </textarea>
+</div> <!--help display-->
+
+
+<div > <!--Map-->
+<img id="map" src = "file:///C:\Users\Cassie Chapman\Desktop\mapprototype.png">
+</div> <!--Map-->
+
+<!--Put a mailto: link on the game page -->
+		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com </a></p>
+
+</div> <!-- wrapper-->
+</body>
+</html>
