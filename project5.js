@@ -26,12 +26,12 @@
 		document.getElementById("main").innerHTML = "A new amusement park, Horrorland, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, 'Exclusive Preview' invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you're going to find Sam. Click North to jump the fence & enter the park.";
 		buttonDisable();
 		}
-		
+
 		//Sets naviation error message
 		function navigationError(){
 		document.getElementById("main").innerHTML = "Don't freak out! You can't go that way. You're at the edge of the park!";
 		}
-		
+	
 		//Score function
 		//Totals scores together (only once per location)
 		function changeScore(){
@@ -45,10 +45,11 @@
 		//If a location has an item, lists item
 		function updateDisplay(){
 			var message = "";
+			var item = "";
 			switch (currentLoc){
 			case 1: message = mansion.desc;
 				scoreMansion = 5;
-				item = "key";
+				item = key.desc;
 				break;
 			case 2: message = circus.desc;
 				item = "book";
@@ -101,8 +102,9 @@
 				document.getElementById("take").disabled = true;
 			}
 			document.getElementById("main").innerHTML = message;
+			document.getElementById("items").innerHTML = item;
 		}
-					
+			
 		//Excel file in GitHub indicates the locations
 		//Runs score code and disables buttons at the end of each move
 		
@@ -207,17 +209,13 @@
 		document.getElementById("navError").innerHTML = "Oops! Try that again. N, S, E, or W."
 		}
 		
-		//Nut job wants to quit my awesome game *only applies to text navigators who go beyond borders
-		function scaredyCat(){
-		document.getElementById("taMain").innerHTML = "Coward!"}
-		
 		
 		//Changes data entered into all lowercase
 		//Launches appropriate button function based on NSEW text entered
 		function buttonGo(){
 		dir = document.getElementById("box").value;
 		dir = dir.toLowerCase();
-		document.getElementById("navError").innerHTML = "";
+		document.getElementById("navError").innerHTML = " ";
 		switch(dir){
 		case "n": 
 		case "north": buttonNorth();
@@ -236,6 +234,7 @@
 			break;
 		case "drop":
 		case "d": dropItem();
+			break;
 		default: wrongDir();
 		}		
 		}
@@ -279,9 +278,9 @@ var town = new Location ("Ghost Town", 2004, "This appears to be modeled after t
 var locArray = [];
 
 	
-function Item(){
-	this.itemId;
-	this.desc;
+function Item(itemId, desc){
+	this.itemId = itemId;
+	this.desc = desc;
 }
 
 var key = new Item(1,"You see a glimmer on the ground. It's a key.");
@@ -295,18 +294,19 @@ var rope = new Item(4,"A length of rope is laying by the side of the building.")
 var bagHolding = [];
 
 function takeItem(){
-	items.push();
+	items.push(bagHolding);
 }
 
 function dropItem(){
 	items.pop(x);
 }
+
 //	this.west = dirWest;
 //	this.east = dirEast;
 //	this.south = dirSouth;
 //	this.north = dirNorth;
-
-		//Add item to bag and list on page
+/*
+		Add item to bag and list on page
 			document.getElementById("bag").innerHTML = bag;
 			document.getElementById("take").disabled = true;	
-		}
+		}*/
