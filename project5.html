@@ -12,7 +12,6 @@
 			*Can collect single item multiple times, every time button is clicked -FIXED, disabled button after clicking
 				*ISSUE NOW: keeping disabled after visiting location once
 			*General alignment of divs
-			*Better map, in progress
 			-->
 		
 		<meta charset = "utf-8">
@@ -22,10 +21,11 @@
 		<!--Intro Programming 10.3.2016-->
 
 		<!--CSS here-->		
-		<link type = "text/css" rel = "stylesheet" href = "horrorland.css">
+		<link type = "text/css" rel = "stylesheet" href = "project5.css">
 	
 		
 		<script type="text/javascript" src = "horrorland.js"></script>
+		<script type="text/javascript" src = "project5location.js"></script>
 		
 </head>
 		
@@ -40,20 +40,10 @@
 </div><!--score display area-->
 
 <div id="main"> <!--Text area-->
- 		<textarea rows="15"
-			cols="100"
-            id = "taMain"
-            name="taMain">
-        </textarea>
 </div> <!--Text area-->
 
 <div> <!--Bag of holding--> 
-<p>Items:
-		<textarea
-            id = "bag"
-            name="bag">
-        </textarea>
-		</p>
+<p id="list" class="list"></p>
 </div> <!--Bag of holding-->
 
 <div id="textBox"> <!--navigation text input-->
@@ -99,9 +89,23 @@
 		<!--Take items-->
 		<input type= "button"
 			class = "button"
-			 id = "take"
-			 value = "Take Item"
-			 onclick = "listItem();" />
+			id = "take"
+			value = "Take Item"
+			onclick = "takeItem();" />
+			 
+		<!--Drop items-->
+		<input type="button"
+			class = "button"
+			id = "drop"
+			value = "Drop Item"
+			onclick = "dropItem();"
+			
+		<!--List items-->
+		<input type="button"
+			class="button"
+			id="list"
+			value="List Items"
+			onclick="listItems();"
 </div> <!--buttons-->
 
 <div> <!--help display-->
@@ -118,7 +122,7 @@
 
 
 <div > <!--Map-->
-<img id="map" src = "file:///C:\Users\Cassie Chapman\Desktop\mapprototype.png">
+<img id="map" src = "mapprototype.png">
 </div> <!--Map-->
 
 <!--Put a mailto: link on the game page -->
