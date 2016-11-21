@@ -139,7 +139,7 @@
 		buttonDisable();
 		updateDisplay();
 		}
-		
+				
 		//Disables buttons that are not applicable based on current location
 		function buttonDisable(){
 		switch (currentLoc){
@@ -244,7 +244,7 @@
 		function helpMe(){
 			document.getElementById("help").innerHTML = "Need some help? To move, click the buttons for North, South, East, or West. If you cannot go in one direction, the button will not be active. If you prefer to type, type N, S, E, W or North, South, East, or West. (Capitalization is not important.) If, in your investigation, you see an item and want to pick up or 'take' it, click the button to 'Take Item' or type in 'take' in the input box. REMEMBER, Sam needs you...";
 		}
-				
+		
 function Location(locName, locId, locDesc, locPoints){
 	this.loc = locName;
 	this.id = locId;
@@ -278,20 +278,6 @@ var town = new Location ("Ghost Town", 2004, "This appears to be modeled after t
 
 var locArray = [];
 
-	
-function Item(itemId, desc){
-	this.itemId = itemId;
-	this.desc = desc;
-	this.take = function (){
-		this.desc.push(bagHolding);
-		document.getElementById("item").innerHTML = ("You have picked up the " + this.desc)
-		this.desc.push
-	}
-	this.drop = function (){
-		this.desc.pop(bagHolding);
-		document.getElementById("item").innerHTML = ("You have dropped up the " + this.desc)
-	}
-}
 
 var key = new Item(1,"You see a glimmer on the ground. It's a key.");
 	
@@ -303,22 +289,25 @@ var rope = new Item(4,"A length of rope is laying by the side of the building.")
 
 var bagHolding = [];
 
-/*function takeItem(){
-	items.push(bagHolding);
-	x = 
-	document.getElementById("item").innerHTML = "You have picked up the " + x.desc)
+function listBag (){
+	bagHolding.toString();
+	alert(bagHolding);
 }
-
-function dropItem(){
-	items.pop(x);
-}
-*/
-//	this.west = dirWest;
-//	this.east = dirEast;
-//	this.south = dirSouth;
-//	this.north = dirNorth;
-/*
-		Add item to bag and list on page
-			document.getElementById("bag").innerHTML = bag;
-			document.getElementById("take").disabled = true;	
-		}*/
+	
+function Item(itemId, desc){
+	this.itemId = itemId;
+	this.desc = desc;
+	this.take = function (){
+		this.desc.push(bagHolding);
+		alert("You have picked up the " + this.desc);
+		}
+	this.remove = function (){
+		document.getElementById("items").innerHTML = "";
+		}
+	}
+/*	
+	this.drop = function (){
+		this.desc.pop(bagHolding);
+		document.getElementById("item").innerHTML = ("You have dropped up the " + this.desc)
+	}
+}*/
