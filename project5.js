@@ -139,6 +139,7 @@
 		buttonDisable();
 		updateDisplay();
 		}
+		
 				
 		//Disables buttons that are not applicable based on current location
 		function buttonDisable(){
@@ -244,7 +245,8 @@
 		function helpMe(){
 			document.getElementById("help").innerHTML = "Need some help? To move, click the buttons for North, South, East, or West. If you cannot go in one direction, the button will not be active. If you prefer to type, type N, S, E, W or North, South, East, or West. (Capitalization is not important.) If, in your investigation, you see an item and want to pick up or 'take' it, click the button to 'Take Item' or type in 'take' in the input box. REMEMBER, Sam needs you...";
 		}
-		
+	
+//Location prototype	
 function Location(locName, locId, locDesc, locPoints){
 	this.loc = locName;
 	this.id = locId;
@@ -252,6 +254,7 @@ function Location(locName, locId, locDesc, locPoints){
 	this.points = locPoints;
 }
 
+//Location objects
 var circus = new Location("Circus of Horrors", 2, "A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??", 5);
 	
 var insect = new Location ("Insect Infestation", 1001, "The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.",5);
@@ -276,38 +279,34 @@ var aquarium = new Location ("Creatures from the Deep", 2003, "An insanely large
 	
 var town = new Location ("Ghost Town", 2004, "This appears to be modeled after those old Wild West shows of yore. Shoot outs at noon. Saloons. That's what your friends reported at least.",5);
 
-var locArray = [];
+//location array
+var locArray = [town,aquarium,maze,coaster,waters,stadium,concessions,children,zoo,mansion,insect,circus];
+
+//Array of items
+var bagHolding = ["bag", " flashlight", " pocket knife", " water",];
+
+//Item prototype
+function Item(id,desc){
+	this.id = id;
+	this.desc = desc;
+	this.takeItem = function takeItem(){
+		bagHolding.push(this.id);
+//		alert("You have picked up the " + this.desc);
+		}
+//	this.remove = function (){
+//		document.getElementById("items").innerHTML = "";
+//		}
+	}
+//Item objects
+var key = new Item("key","You see a glimmer on the ground. It's a key.");
+var card = new Item("card","Ooo, someone must have dropped their badge.");
+var note = new Item("note","What's that? It's a piece of paper wedged behind the picture.");
+var rope = new Item("rope","A length of rope is laying by the side of the building.");
 
 
-var key = new Item(1,"You see a glimmer on the ground. It's a key.");
-	
-var card = new Item(2,"Ooo, someone must have dropped their badge.");
-	
-var note = new Item(3,"What's that? It's a piece of paper wedged behind the picture.");
-	
-var rope = new Item(4,"A length of rope is laying by the side of the building.");
-
-var bagHolding = [];
-
+//Bag/List of items
 function listBag (){
 	bagHolding.toString();
-	alert(bagHolding);
+	alert("You have a "+ bagHolding);
 }
-	
-function Item(itemId, desc){
-	this.itemId = itemId;
-	this.desc = desc;
-	this.take = function (){
-		this.desc.push(bagHolding);
-		alert("You have picked up the " + this.desc);
-		}
-	this.remove = function (){
-		document.getElementById("items").innerHTML = "";
-		}
-	}
-/*	
-	this.drop = function (){
-		this.desc.pop(bagHolding);
-		document.getElementById("item").innerHTML = ("You have dropped up the " + this.desc)
-	}
-}*/
+
