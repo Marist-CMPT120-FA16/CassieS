@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>
+         Alan's Game
+      </title>
+	 
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	  
+      <script type="text/javascript">
+	           var currentLoc = 0;
+         
+         var NORTH = 0;
+         var SOUTH = 1;
+         var EAST  = 2;
+         var WEST  = 3;
+         
+         var nav = [ // N   S   E   W 
+             /* 0 */ [  3,  -1,  1,  -1],
+             /* 1 */ [ 4,  -1, 2, 0],
+                   ];
+         
+         // Initialization
+         function init() {
+            look();
+         }
+         // Directional Button Event Handlers
+         function btnEast_click() {
+            nextLoc(EAST);
+            look();
+         }
+         function btnWest_click() {
+            nextLoc(WEST);            
+            look();
+         }
+         function nextLoc(dir) {
+            var newLoc = nav[currentLoc][dir];
+            if (newLoc >= 0) {
+               currentLoc = newLoc;
+			   displayMessage();
+            } else {
+               displayMessage("You cannot go that way.");
+            }            
+         }
+         // Utility Function(s)
+         function displayMessage(msg) {
+            var target = document.getElementById("taMain");
+            target.value = msg + "\n\n" + target.value;
+         }		 
+		 //Location prototype	
+		function Location(locName, locId, locDesc, locPoints){
+			this.loc = locName;
+			this.id = locId;
+			this.desc = locDesc;
+			this.points = locPoints;
+}
+
+//Location objects
+var circus = new Location("Circus of Horrors", 2, "A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??", 5);
+	
+var insect = new Location ("Insect Infestation", 1001, "The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.",5);
+	  </script>
+	</head>
+   <body onload="init();">
+       <textarea id="taMain" rows="8" cols="32"></textarea>
+       
+       <br>
+       Command:       
+       <input type="text" 
+              id = "txtCommand"
+              name="txtCommand">
+
+       <input type="button"
+              value="Go" 
+              onclick="btnGo_click();" />                           
+       
+       <br>
+       <input type="button" 
+              value="North"
+              onclick="btnNorth_click();">
+       <input type="button" 
+              value="South"
+              onclick="btnSouth_click();">
+       <input type="button" 
+              value="East"
+              onclick="btnEast_click();">
+       <input type="button" 
+              value="West"
+              onclick="btnWest_click();">
+              
+	
+	</body>
+</html>
