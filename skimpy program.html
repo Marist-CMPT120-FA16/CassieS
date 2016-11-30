@@ -8,12 +8,13 @@
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	  <script type="text/javascript">
 		 //Location prototype	
-function Location(locId, locDesc){
+/*function Location(locId, locDesc){
 	this.id = locId;
 	this.desc = locDesc;}
 //Location objects
 var 2 = new Location(2, "A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??");
 var 1 = new Location (1, "The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.");
+*/
          var currentLoc = 0;
 		 var EAST  = 0;
          var WEST  = 1;
@@ -35,7 +36,7 @@ var 1 = new Location (1, "The Insect Infestation attraction is part zoo/part 'ha
             var newLoc = nav[currentLoc][dir];
             if (newLoc ==2) {
                currentLoc = newLoc;
-			   displayMessage(currentLoc.desc);} 
+			   displayMessage("2 East!");} 
 			   else if (newLoc==0){
 			        currentLoc = newLoc;
 					displayMessage("0 Home!");}
