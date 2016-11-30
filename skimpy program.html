@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>
+         Skimpy program
+      </title>
+	 
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	  <script type="text/javascript">
+		 //Location prototype	
+function Location(locId, locDesc){
+	this.id = locId;
+	this.desc = locDesc;}
+//Location objects
+var 2 = new Location(2, "A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??");
+var 1 = new Location (1, "The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.");
+         var currentLoc = 0;
+		 var EAST  = 0;
+         var WEST  = 1;
+		 var NORTH = 2;
+         var nav = [ // E,W,N,S
+             /*Current Location*/ 
+			 /* 0 */ [2,1,4,-1],
+             /* 1 */ [0,-1,3,-1],
+			 /* 2 */ [-1,0,5-1],
+			 /* 3 */ [4,-1,-1,1],
+			 /* 4 */ [5,3,-1,0],
+			 /* 5 */ [-1,4,-1,2],
+			 ];        
+          // Directional Button Event Handlers
+         function btnEast_click() {nextLoc(EAST);}
+         function btnWest_click() {nextLoc(WEST);}
+		 function btnNorth_click() {nextLoc(NORTH);}
+         function nextLoc(dir) {
+            var newLoc = nav[currentLoc][dir];
+            if (newLoc ==2) {
+               currentLoc = newLoc;
+			   displayMessage(currentLoc.desc);} 
+			   else if (newLoc==0){
+			        currentLoc = newLoc;
+					displayMessage("0 Home!");}
+					else if (newLoc==1){
+					    currentLoc = newLoc;
+						displayMessage("1 WEST!");}
+							else if (newLoc==3){
+							currentLoc = newLoc;
+							displayMessage("3 North!");}
+								else if (newLoc==4){
+								currentLoc = newLoc;
+								displayMessage("4 North!");}
+									else if (newLoc==5){
+									currentLoc = newLoc;
+									displayMessage("5 North!");}
+			else {
+			   displayMessage("You cannot go that way.");} }
+         // Utility Function(s)
+         function displayMessage(msg) {
+            var target = document.getElementById("taMain");
+            target.value = msg + "\n\n" + target.value;
+         }		 
+	</script>
+	</head>
+   <body onload="init();">
+       <textarea id="taMain" rows="8" cols="32"></textarea><br>
+	   <input type="button" value="West" onclick="btnWest_click();">
+       <input type="button" value="East" onclick="btnEast_click();">
+	   <input type="button" value="North" onclick="btnNorth_click();">
+	</body>
+</html>
