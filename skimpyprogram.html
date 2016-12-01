@@ -7,14 +7,21 @@
 	 
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	  <script type="text/javascript">
+		var currentLoc = 0;
+		var x;
 		 //Location prototype	
 function Location(locId, locDesc){
 	this.id = locId;
 	this.desc = locDesc;}
 //Location objects
-var loc2 = new Location(2, "A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??");
-var loc1 = new Location (1, "The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.");
-         var currentLoc = 0;
+var locations={
+loc2: new Location(2, "circus"),
+loc1: new Location (1, "insect"),
+loc0: new Location (0, "home"),
+loc3: new Location (3,"3 n"),
+loc4: new Location (4,"4 n"),
+loc5: new Location (5,"5n"),
+}
 		 var EAST  = 0;
          var WEST  = 1;
 		 var NORTH = 2;
@@ -32,11 +39,11 @@ var loc1 = new Location (1, "The Insect Infestation attraction is part zoo/part 
          function btnEast_click() {nextLoc(EAST);}
          function btnWest_click() {nextLoc(WEST);}
 		 function btnNorth_click() {nextLoc(NORTH);}
-         function nextLoc(dir) {
-            var newLoc = nav[currentLoc][dir];
-			currentLoc=newLoc;
-			locDesc ='loc'+[currentLoc]+'.desc'
-			displayMessage(locDesc);}
+
+ function nextLoc(dir) {
+    var newLoc = nav[currentLoc][dir];
+    currentLoc="loc"+newLoc;
+    displayMessage(locations[currentLoc].desc);}
 /*            if (newLoc ==2) {
                currentLoc = newLoc;
 			   displayMessage("2 East!");} 
