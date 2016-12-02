@@ -13,7 +13,12 @@
 function Location(locId, locDesc){
 	this.id = locId;
 	this.desc = locDesc;}
-//Location objects
+	
+loc0 = new Location(0,"home")
+loc1 = new Location(1,"insect"),
+loc2 = new Location(2,"circus")
+//Location objects 
+/*
 var locations={
 loc2: new Location(2, "circus"),
 loc1: new Location (1, "insect"),
@@ -21,11 +26,16 @@ loc0: new Location (0, "home"),
 loc3: new Location (3,"3 n"),
 loc4: new Location (4,"4 n"),
 loc5: new Location (5,"5n"),
-}
+}*/
+
+var locArr = [
+/*0*/loc0.desc,
+/*1*/loc1.desc,
+/*2*/loc2.desc,
+]
 		 var EAST  = 0;
          var WEST  = 1;
 		 var NORTH = 2;
-		 var locDesc = 0;
          var nav = [ // E,W,N,S
              /*Current Location*/ 
 			 /* 0 */ [2,1,4,-1],
@@ -35,6 +45,7 @@ loc5: new Location (5,"5n"),
 			 /* 4 */ [5,3,-1,0],
 			 /* 5 */ [-1,4,-1,2],
 			 ];        
+	
           // Directional Button Event Handlers
          function btnEast_click() {nextLoc(EAST);}
          function btnWest_click() {nextLoc(WEST);}
@@ -42,8 +53,8 @@ loc5: new Location (5,"5n"),
 
  function nextLoc(dir) {
     var newLoc = nav[currentLoc][dir];
-    currentLoc="loc"+newLoc;
-    displayMessage(locations[currentLoc].desc);}
+	currentLoc=newLoc;
+    displayMessage(locArr[newLoc]);}
 /*            if (newLoc ==2) {
                currentLoc = newLoc;
 			   displayMessage("2 East!");} 
