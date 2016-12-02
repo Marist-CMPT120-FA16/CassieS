@@ -77,14 +77,81 @@ var locArr = [
          function displayMessage(msg) {
             var target = document.getElementById("taMain");
             target.value = msg + "\n\n" + target.value;
-         }		 
+         }
+	function init(){
+	buttonDisable();}	 
+		 		//Disables buttons that are not applicable based on current location
+		function buttonDisable(){
+		switch (currentLoc){
+		//South off
+		case 0: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false; 
+				document.getElementById("btnW").disabled = false;			
+			break;
+		//South West off
+		case 1: document.getElementById("btnN").disabled = false; 
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;	
+			break;
+		//West off
+		case 2:
+		case 3: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;	
+			break;
+		//South East off
+		case 1001: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;	
+			break;
+		//North West off
+		case 4: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;
+			break;
+		//North off
+		case 1004: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = false;
+			break;
+		//East off
+		case 2003:
+		case 2002: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;
+			break;
+		//North East off
+		case 2004: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;
+			break;
+		//East West South off
+		case 010000: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = true;
+			break;
+		default: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = false;
+				}
+}
 	</script>
 	</head>
    <body onload="init();">
-		<textarea id="taMain" rows="8" cols="32"></textarea><br>
-		<input type="button" value="West" onclick="btnWest_click();">
-		<input type="button" value="East" onclick="btnEast_click();">
-		<input type="button" value="North" onclick="btnNorth_click();">
-		<input type="button" value="South" onclick="btnSouth_click();">
+		<textarea id="taMain" rows="10" cols="50"></textarea><br>
+		<input type="button" id="btnW" value="West" onclick="btnWest_click();">
+		<input type="button" id="btnE" value="East" onclick="btnEast_click();">
+		<input type="button" id="btnN" value="North" onclick="btnNorth_click();">
+		<input type="button" id="btnS" value="South" onclick="btnSouth_click();">
 	</body>
 </html>
