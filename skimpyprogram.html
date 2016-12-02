@@ -14,19 +14,19 @@ function Location(locId, locDesc){
 	this.id = locId;
 	this.desc = locDesc;}
 	
-loc0 = new Location(0,"home")
-loc1 = new Location(1,"insect"),
-loc2 = new Location(2,"circus")
 //Location objects 
-/*
-var locations={
-loc2: new Location(2, "circus"),
-loc1: new Location (1, "insect"),
-loc0: new Location (0, "home"),
-loc3: new Location (3,"3 n"),
-loc4: new Location (4,"4 n"),
-loc5: new Location (5,"5n"),
-}*/
+loc0 = new Location (0, "home")
+loc1 = new Location (1, "insect"),
+loc2 = new Location (2, "circus"),
+loc3 = new Location (3, "town"),
+loc4 = new Location (4, "zoo"),
+loc5 = new Location (5, "aquarium"),
+loc6 = new Location (6, "children"),
+loc7 = new Location (7, "coaster"),
+loc8 = new Location (8, "concessions"),
+loc9 = new Location (9, "stadium"),
+loc10 = new Location (10, "water"),
+loc11 = new Location (11, "mansion"),
 
 var locArr = [
 /*0*/loc0.desc,
@@ -36,6 +36,7 @@ var locArr = [
 		 var EAST  = 0;
          var WEST  = 1;
 		 var NORTH = 2;
+		 var SOUTH = 3;
          var nav = [ // E,W,N,S
              /*Current Location*/ 
 			 /* 0 */ [2,1,4,-1],
@@ -44,12 +45,19 @@ var locArr = [
 			 /* 3 */ [4,-1,-1,1],
 			 /* 4 */ [5,3,-1,0],
 			 /* 5 */ [-1,4,-1,2],
+			 /* 6 */ 
+			 /* 7 */
+			 /* 8 */
+			 /* 9 */
+			 /* 10 */
+			 /* 11 */
 			 ];        
 	
           // Directional Button Event Handlers
          function btnEast_click() {nextLoc(EAST);}
          function btnWest_click() {nextLoc(WEST);}
 		 function btnNorth_click() {nextLoc(NORTH);}
+		 function btnSouth_click() {nextLoc(SOUTH);}
 
  function nextLoc(dir) {
     var newLoc = nav[currentLoc][dir];
