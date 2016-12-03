@@ -67,20 +67,20 @@ var locArr = [
 			currentLoc=newLoc;
 			displayMessage(locArr[newLoc]);
 			buttonDisable();			
-			displayMessage(itemArr[currentLoc]);
+			displayMessage(itemDesc[currentLoc]);
 			}
 //Items Objects
 function Item(itemId,itemDesc){
 	this.id = itemId;
 	this.desc = itemDesc;}
 //Individual Items
-key = new Item (1,"key");
-rope = new Item (2,"rope");
-card = new Item (3,"card");
-notebook = new Item (4,"notebook");
+key = new Item ("a key","As you start to head towards the mouth, um, gate?, of the zoo, you step on something hard. It's a key. The handle is shaped like a femur.");
+rope = new Item ("a rope","To the left, a loose length of rope dangles from one of the bleachers.");
+card = new Item ("an ID card","You walk by the bushes towards the door. Something glintss in the moonlight. It's an ID card!!!");
+notebook = new Item ("Sam's notebook","What's that? You see the corner of something sticking out of the corner near the shark tank. It's a notebook. It's SAM'S notebook!!");
 //Location Item Array
-var itemArr = [
-/*0 Mansion*/key.desc,
+var itemDesc = [
+/*0 Mansion*/"",
 /*1 Waters*/"",
 /*2 Coaster*/card.desc,
 /*3 Circus*/rope.desc,
@@ -89,14 +89,37 @@ var itemArr = [
 /*6 Children's*/"",
 /*7 Stadium*/"",
 /*8 Aquarium*/notebook.desc,
-/*9 Zoo*/"",
+/*9 Zoo*/key.desc,
+]
+
+var itemArr =[
+/*0 Mansion*/"",
+/*1 Waters*/"",
+/*2 Coaster*/card.id,
+/*3 Circus*/rope.id,
+/*4 Confections*/"", 
+/*5 Insect*/"",
+/*6 Children's*/,
+/*7 Stadium*/0,
+/*8 Aquarium*/notebook.id,
+/*9 Zoo*/key.id,
 ]
 //Bag of Holding
-var itemBag=[]
+var itemBag=["a backpack","a flashlight"]
+function btnInventory(){
+	var bagContents = itemBag.toString();
+	var bagPrint = "You've brought or found: " + bagContents;
+    displayMessage(bagPrint);
+}
 //take button
-	function btnTake(currentLoc){
-	itemArr.pop();
-	itemBag.push();
+function btnTake(){
+	var itemLoc = itemArr[currentLoc];
+	var item=itemArr.splice(currentLoc,1);
+	var itemRemove=itemDesc.splice(currentLoc,1);
+	var itemReplace=itemDesc.splice(currentLoc,1,"");
+	var youTook = "You've pick up the " + item + " and put it in your backpack."
+	displayMessage(youTook);
+	itemBag.push(item);
 	}
 // Utility Function(s)
 		function displayMessage(msg) {
@@ -173,9 +196,12 @@ displayMessage(help);
 		<input type="button" id="btnN" value="North" onclick="btnNorth_click();">
 		<input type="button" id="btnS" value="South" onclick="btnSouth_click();">
 		<input type="button" id="take" value="Take" onclick="btnTake();">
+		<input type="button" id="bag" value="Item inventory" onclick="btnInventory();">
 </div>
-
-
+<div> 					<!--help display-->
+    <input type="button" class = "button" value="Help"  onclick="helpMe();"/>
+<!--Put a mailto: link on the game page -->
+		<p>For more information, contact me at <a href = "mailto:craychap@gmail.com">craychap@gmail.com</a></p>
 </div> 					<!--help display-->
 	</body>
 </html>
