@@ -2,9 +2,8 @@
 <html>
    <head>
       <title>
-         Skimpy program
+         Welcome to Horror Land
       </title>
-	 
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 	  <script type="text/javascript">
 		var currentLoc = 0;
@@ -27,16 +26,16 @@ loc8 = new Location (8,"Creatures from the Deep: An insanely large aquarium, thi
 loc9 = new Location (9,"Zombie Zoo: Part zoo, part drive-thru safari, all terrifying. Even now you can hear the sounds of animals. Sounds you don't recognize. But Sam LOVED animals, so you have to look here. As you approach the hideous gate, made to look like a way too realistic alligator gone undead, you notice a key card wedged between two of the teeth. For a cement 'gate', those teeth look awfully sharp...");
 //Location array
 var locArr = [
-/*0*/loc0.desc,
-/*1*/loc1.desc,
-/*2*/loc2.desc,
-/*3*/loc3.desc,
-/*4*/loc4.desc,
-/*5*/loc5.desc,
-/*6*/loc6.desc,
-/*7*/loc7.desc,
-/*8*/loc8.desc,
-/*9*/loc9.desc,
+/*0 Mansion*/loc0.desc,
+/*1 Waters*/loc1.desc,
+/*2 Coaster*/loc2.desc,
+/*3 Circus*/loc3.desc,
+/*4 Confections*/loc4.desc, 
+/*5 Insect*/loc5.desc,
+/*6 Children's*/loc6.desc,
+/*7 Stadium*/loc7.desc,
+/*8 Aquarium*/loc8.desc,
+/*9 Zoo*/loc9.desc,
 ]
 //Items Objects
 function Items(itemId,itemDesc){
@@ -47,8 +46,19 @@ key = new Item ("key");
 rope = new Item ("rope");
 card = new Item ("card");
 notebook = new Item ("notebook");
-//Item array
-var itemArr = []
+//Location Item Array
+var itemArr = [
+/*0 Mansion*/key,
+/*1 Waters*/,
+/*2 Coaster*/card,
+/*3 Circus*/rope,
+/*4 Confections*/, 
+/*5 Insect*/,
+/*6 Children's*/,
+/*7 Stadium*/,
+/*8 Aquarium*/notebook,
+/*9 Zoo*/,
+]
 //take button
 	function btnTake(){
 	itemArr.push();
