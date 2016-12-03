@@ -2,92 +2,151 @@
 <html>
    <head>
       <title>
-         Alan's Game
+         Skimpy program
       </title>
 	 
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-	  
-      <script type="text/javascript">
-	           var currentLoc = 0;
-         
-         var NORTH = 0;
-         var SOUTH = 1;
-         var EAST  = 2;
-         var WEST  = 3;
-         
-         var nav = [ // N   S   E   W 
-             /* 0 */ [  3,  -1,  1,  -1],
-             /* 1 */ [ 4,  -1, 2, 0],
-                   ];
-         
-         // Initialization
-         function init() {
-            look();
-         }
-         // Directional Button Event Handlers
-         function btnEast_click() {
-            nextLoc(EAST);
-            look();
-         }
-         function btnWest_click() {
-            nextLoc(WEST);            
-            look();
-         }
-         function nextLoc(dir) {
-            var newLoc = nav[currentLoc][dir];
-            if (newLoc >= 0) {
-               currentLoc = newLoc;
-			   displayMessage();
-            } else {
-               displayMessage("You cannot go that way.");
-            }            
-         }
-         // Utility Function(s)
-         function displayMessage(msg) {
+	  <script type="text/javascript">
+		var currentLoc = 0;
+		var x;
+//Location prototype	
+function Location(locId, locDesc){
+	this.id = locId;
+	this.desc = locDesc;
+	this.item }
+//Location objects 
+loc0 = new Location (0,"Haunted Mansion: Like a demented Disney castle, the centerpiece entrance of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home...",key);
+loc1 = new Location (1,"Wicked Waters: A water park. Simple enough. But why is the water so cloudy? And how would anyone survive that drop??");
+loc2 = new Location (2,"Death by Coaster: Sneaking quietly along the walkway, the monstrous roller coaster comes into view. Already voted 'Most terrifying ride in the world', the ride twists and turns through the night sky like a snake. 'Death by Coaster.' That HAS to be an exaggeration...right?");
+loc3 = new Location (3,"Circus of Horrors: A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??");
+loc4 = new Location (4,"Creepy Confections: This place doesn't look that bad. Yeah, it says 'Creepy Confections,' but how bad can a few shops & restaurants be?");
+loc5 = new Location (5,"Insect Infestation: The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.");
+loc6 = new Location (6,"Children's Dreams: A playground. Of sorts. The rides are like traditional kids rides, but....off.");
+loc7 = new Location (7,"Severed Stadium: It says 'stadium' but it looks more like the Roman Colliseum. How bizarre! Then you remember some of the 'attractions' the Colliseum used to present...");
+loc8 = new Location (8,"Creatures from the Deep: An insanely large aquarium, this attraction, too, has made headlines. But, honestly, a shark is a shark, right?");
+loc9 = new Location (9,"Zombie Zoo: Part zoo, part drive-thru safari, all terrifying. Even now you can hear the sounds of animals. Sounds you don't recognize. But Sam LOVED animals, so you have to look here. As you approach the hideous gate, made to look like a way too realistic alligator gone undead, you notice a key card wedged between two of the teeth. For a cement 'gate', those teeth look awfully sharp...");
+//Location array
+var locArr = [
+/*0*/loc0.desc,
+/*1*/loc1.desc,
+/*2*/loc2.desc,
+/*3*/loc3.desc,
+/*4*/loc4.desc,
+/*5*/loc5.desc,
+/*6*/loc6.desc,
+/*7*/loc7.desc,
+/*8*/loc8.desc,
+/*9*/loc9.desc,
+]
+//Items Objects
+function Items(itemId,itemDesc){
+	this.id = itemId;
+	this.desc = itemDesc;}
+//Individual Items
+key = new Item ("key");
+rope = new Item ("rope");
+card = new Item ("card");
+notebook = new Item ("notebook");
+//Item array
+var itemArr = []
+//take button
+	function btnTake(){
+	itemArr.push();
+	}
+
+//Navigation variables
+		var NORTH = 0;
+		var SOUTH = 1;	 
+		var EAST  = 2;
+		var WEST  = 3;
+//Navigation locations
+		var nav = [ // N,S,E,W,
+             /*Current Location*/ 
+			 /*0 Entrance*/ [4,-1,2,1],
+             /*1 Mansion*/ [3,-1,0,-1],
+			 /*2 Coaster*/ [5,-1,-1,0],
+			 /*3 Circus*/ [6,1,4,-1],
+			 /*4 Concessions*/ [7,0,5,3],
+			 /*5 Insect*/ [8,2,-1,4],
+			 /*6 Children's*/ [9,3,7,-1],
+			 /*7 Stadium*/ [9,4,8,6],
+			 /*8 Aquarium*/ [9,5,-1,7],
+			 /*9 Zoo*/ [-1,6,-1,-1]
+			 ];        
+// Directional Button Event Handlers
+		function btnEast_click() {nextLoc(EAST);}
+		function btnWest_click() {nextLoc(WEST);}
+		function btnNorth_click() {nextLoc(NORTH);}
+		function btnSouth_click() {nextLoc(SOUTH);}
+		function nextLoc(dir) {
+			var newLoc = nav[currentLoc][dir];
+			currentLoc=newLoc;
+			displayMessage(locArr[newLoc]);
+			buttonDisable();
+			}
+// Utility Function(s)
+		function displayMessage(msg) {
             var target = document.getElementById("taMain");
             target.value = msg + "\n\n" + target.value;
-         }		 
-		 //Location prototype	
-		function Location(locName, locId, locDesc, locPoints){
-			this.loc = locName;
-			this.id = locId;
-			this.desc = locDesc;
-			this.points = locPoints;
+         }
+	function init(){
+	buttonDisable();
+	displayMessage("A new amusement park, Horrorland, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, 'Exclusive Preview' invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you're going to find Sam. Click North to jump the fence & enter the park.");} 
+//Disables buttons that are not applicable based on current location
+		function buttonDisable(){
+		switch (currentLoc){
+		//South off
+		case 0: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false; 
+				document.getElementById("btnW").disabled = false;			
+			break;
+		//South West off
+		case 1: document.getElementById("btnN").disabled = false; 
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;	
+			break;
+		//South East off
+		case 2: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;	
+			break;
+		//East off
+		case 8:
+		case 5: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = false;
+			break;
+		//West off
+		case 6:
+		case 3: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = true;	
+			break;
+		//East West North off
+		case 9: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = true;
+			break;
+		default: document.getElementById("btnN").disabled = false;
+				document.getElementById("btnS").disabled = false;
+				document.getElementById("btnE").disabled = false;
+				document.getElementById("btnW").disabled = false;
+				}
 }
-
-//Location objects
-var circus = new Location("Circus of Horrors", 2, "A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??", 5);
-	
-var insect = new Location ("Insect Infestation", 1001, "The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.",5);
-	  </script>
+	</script>
 	</head>
    <body onload="init();">
-       <textarea id="taMain" rows="8" cols="32"></textarea>
-       
-       <br>
-       Command:       
-       <input type="text" 
-              id = "txtCommand"
-              name="txtCommand">
-
-       <input type="button"
-              value="Go" 
-              onclick="btnGo_click();" />                           
-       
-       <br>
-       <input type="button" 
-              value="North"
-              onclick="btnNorth_click();">
-       <input type="button" 
-              value="South"
-              onclick="btnSouth_click();">
-       <input type="button" 
-              value="East"
-              onclick="btnEast_click();">
-       <input type="button" 
-              value="West"
-              onclick="btnWest_click();">
-              
-	
-	</body>
+		<textarea id="taMain" rows="25" cols="100"></textarea><br>
+		<input type="button" id="btnW" value="West" onclick="btnWest_click();">
+		<input type="button" id="btnE" value="East" onclick="btnEast_click();">
+		<input type="button" id="btnN" value="North" onclick="btnNorth_click();">
+		<input type="button" id="btnS" value="South" onclick="btnSouth_click();">
+		<input type="button" id="take" value="Take" onclick="btnTake();">
+		</body>
 </html>
