@@ -10,6 +10,14 @@
 	  <script type="text/javascript">
 		var currentLoc = 0;
 		var x=0;
+		var name;
+//Name collect
+function nameCollect(){
+    var person = prompt("Please enter your name", "Name");
+    if (person != null) {
+		name=person;
+		}
+}
 //Location prototype	
 function Location(locId, locDesc){
 	this.id = locId;
@@ -124,12 +132,20 @@ function btnTake(){
 // Utility Function(s)
 		function displayMessage(msg) {
             var target = document.getElementById("taMain");
-            target.value = msg + "\n\n" + target.value;
+            target.value = msg + "\n\n" + target.value + msg;
          }
+//Win function
+		function winGame(){
+		if (itemBag.length==4){
+		displayMessage("Crap! As you go to put the "+itemBag[4]+" in the bag, the notebook falls to the ground. You reach down to pick it up. Suddenly, you register what you're reading. In frantically drawn text, it says 'HELP! I'M TRAPPED BEHIND THE WATERFALL!!!' Someone - or something? - must have dropped it...after...You don't want to think about what's happened to Sam."+"\n\n"+"You run to the Wicked Waters display and carefully try to get behind the waterfall. 'It's impossible!' No, wait, you get an idea. Using the rope, you lower yourself from the top of the waterfall. Behind it, you see a cage. THERE'S SAM!! You unlock the cage and grab Sam, who's able to stumble along with your help. How to get out of here?? There's a door in the back! Using the ID card, you are able to scan it and open the door. You run to the nearest exit!"+"\n\n"+"OMG YOU MADE IT!!! Once you're clear of the park - AND SAFE!! - you set Sam on the ground."+"\n\n"+"SAM!! SAM!! WAKE UP!"+"\n\n"+name+"? Is that you?"+"\n\n"+"Yeah, are you okay?"+"\n\n"+"Yeah, I'm fine" }
+		}
+//Lose function
+		function loseGame(){
+		}
 //Onload function
 	function init(){
 	buttonDisable();
-	displayMessage("A new amusement park, Horrorland, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, 'Exclusive Preview' invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you're going to find Sam. Click North to jump the fence & enter the park.");} 
+	displayMessage("A new amusement park, Horrorland, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, 'Exclusive Preview' invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one."+"\n\n"+"The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you're going to find Sam.");} 
 //Disables buttons that are not applicable based on current location
 		function buttonDisable(){
 		switch (currentLoc){
