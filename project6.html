@@ -4,17 +4,18 @@
       <title>
          Welcome to Horror Land
       </title>
+	  <link type = "text/css" rel = "stylesheet" href = "project6.css">
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
 	  <script type="text/javascript">
 		var currentLoc = 0;
-		var x;
+		var x=0;
 //Location prototype	
 function Location(locId, locDesc){
 	this.id = locId;
-	this.desc = locDesc;
-	this.item }
-//Location objects 
-loc0 = new Location (0,"Haunted Mansion: Like a demented Disney castle, the centerpiece entrance of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home...",key);
+	this.desc = locDesc;}
+	//Location objects 
+loc0 = new Location (0,"Haunted Mansion: Like a demented Disney castle, the centerpiece entrance of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. Hopefully, everyone has gone home...Do you look around?");
 loc1 = new Location (1,"Wicked Waters: A water park. Simple enough. But why is the water so cloudy? And how would anyone survive that drop??");
 loc2 = new Location (2,"Death by Coaster: Sneaking quietly along the walkway, the monstrous roller coaster comes into view. Already voted 'Most terrifying ride in the world', the ride twists and turns through the night sky like a snake. 'Death by Coaster.' That HAS to be an exaggeration...right?");
 loc3 = new Location (3,"Circus of Horrors: A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??");
@@ -37,33 +38,6 @@ var locArr = [
 /*8 Aquarium*/loc8.desc,
 /*9 Zoo*/loc9.desc,
 ]
-//Items Objects
-function Items(itemId,itemDesc){
-	this.id = itemId;
-	this.desc = itemDesc;}
-//Individual Items
-key = new Item ("key");
-rope = new Item ("rope");
-card = new Item ("card");
-notebook = new Item ("notebook");
-//Location Item Array
-var itemArr = [
-/*0 Mansion*/key,
-/*1 Waters*/,
-/*2 Coaster*/card,
-/*3 Circus*/rope,
-/*4 Confections*/, 
-/*5 Insect*/,
-/*6 Children's*/,
-/*7 Stadium*/,
-/*8 Aquarium*/notebook,
-/*9 Zoo*/,
-]
-//take button
-	function btnTake(){
-	itemArr.push();
-	}
-
 //Navigation variables
 		var NORTH = 0;
 		var SOUTH = 1;	 
@@ -92,13 +66,44 @@ var itemArr = [
 			var newLoc = nav[currentLoc][dir];
 			currentLoc=newLoc;
 			displayMessage(locArr[newLoc]);
-			buttonDisable();
+			buttonDisable();			
+			displayMessage(itemArr[currentLoc]);
 			}
+//Items Objects
+function Item(itemId,itemDesc){
+	this.id = itemId;
+	this.desc = itemDesc;}
+//Individual Items
+key = new Item (1,"key");
+rope = new Item (2,"rope");
+card = new Item (3,"card");
+notebook = new Item (4,"notebook");
+//Location Item Array
+var itemArr = [
+/*0 Mansion*/key.desc,
+/*1 Waters*/"",
+/*2 Coaster*/card.desc,
+/*3 Circus*/rope.desc,
+/*4 Confections*/"", 
+/*5 Insect*/"",
+/*6 Children's*/"",
+/*7 Stadium*/"",
+/*8 Aquarium*/notebook.desc,
+/*9 Zoo*/"",
+]
+//Bag of Holding
+var itemBag=[]
+//take button
+	function btnTake(currentLoc){
+	itemArr.pop();
+	itemBag.push();
+	}
 // Utility Function(s)
 		function displayMessage(msg) {
             var target = document.getElementById("taMain");
             target.value = msg + "\n\n" + target.value;
          }
+//Onload function
 	function init(){
 	buttonDisable();
 	displayMessage("A new amusement park, Horrorland, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, 'Exclusive Preview' invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one. The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you're going to find Sam. Click North to jump the fence & enter the park.");} 
@@ -149,14 +154,28 @@ var itemArr = [
 				document.getElementById("btnW").disabled = false;
 				}
 }
+/*
+function helpMe(){
+var help = "Click an active direction to move or enter a compass direction into the text box below and click GO. To pick up an item, click the TAKE button or enter Take into the text box below and click GO. Any questions or problems with the game, click the CONTACT link."
+displayMessage(help);
+}*/
 	</script>
 	</head>
    <body onload="init();">
-		<textarea id="taMain" rows="25" cols="100"></textarea><br>
+		<!--Display title of game on game page-->
+		<h1>Welcome to Horror Land!</h1>
+
+
+<div>
+		<textarea id="taMain" rows="15" cols="100"></textarea><br>
 		<input type="button" id="btnW" value="West" onclick="btnWest_click();">
 		<input type="button" id="btnE" value="East" onclick="btnEast_click();">
 		<input type="button" id="btnN" value="North" onclick="btnNorth_click();">
 		<input type="button" id="btnS" value="South" onclick="btnSouth_click();">
 		<input type="button" id="take" value="Take" onclick="btnTake();">
-		</body>
+</div>
+
+
+</div> 					<!--help display-->
+	</body>
 </html>
