@@ -92,6 +92,7 @@ var errorMsg = [
 				}
 				else{
 					displayMessage(locArr[newLoc]);
+					moveLocPoints();
 					}
 					}
 					}
@@ -152,8 +153,8 @@ function btnTake(){
 			var itemArrReplace=itemArr.splice(currentLoc,1,0);
 			displayMessage(youTook);
 			};
+	countItemPoints();
 	winGame();
-	loseGame();
 	}
 // Utility Function(s)
 		function displayMessage(msg) {
@@ -165,6 +166,73 @@ function btnTake(){
 		if (itemBag.length==6){
 		displayMessage("Crap! As you go to put it in the bag, the notebook falls to the ground. You reach down to pick it up. Suddenly, you register what you're reading. In frantically drawn text, it says 'HELP! I'M TRAPPED BEHIND THE WATERFALL!!!' \n\nSomeone - or something? - must have dropped it...after...You don't want to think about what's happened to Sam. You run to the Wicked Waters display and carefully try to get behind the waterfall. \n\nIt's impossible! No, wait, you have an idea. Using the rope, you lower yourself from the top of the waterfall. Behind it, you see a cage. THERE'S SAM!! You unlock the cage and grab Sam, who, semi-conscious, is able to stumble along with your help. \n\nHow to get out of here?? There's a door in the back! Using the ID card, you are able to scan it and open the door. You run to the nearest exit! \n\nOMG YOU MADE IT!!! Once you're clear of the park - AND SAFE!! - you set Sam on the ground.\n\n'SAM!! SAM!! WAKE UP!'\n\n'"+name+"? Is that you?'\n\n'Yeah, are you okay?'\n\n'I'm fantassssttiiiiccc' \n\nSam's voice completely changes...and looks up at you. Staring back  is a hideously disgusting caricature of what was once your best friend. Not Sam. Not human. Not...natural. As the creature lunges, you see a sign in the distance and realize, \n\n'We're still in the park...'")
 		}
+		}
+//Location Scores
+var locPoints = [
+	/*0 Mansion*/52,
+	/*1 Waters*/50,
+	/*2 Coaster*/50,
+	/*3 Circus*/50,
+	/*4 Confections*/50, 
+	/*5 Insect*/50,
+	/*6 Children's*/50,
+	/*7 Stadium*/50,
+	/*8 Aquarium*/50,
+	/*9 Zoo*/50,
+	]
+	
+//Earned Location Scores
+var earnedLocPoints = []
+//Point Items
+var totalItems;
+
+function countItemPoints(){
+totalItems=itemBag.length;
+var itemTotal=(totalItems-2)*16;
+displayMessage("You've earned "+itemTotal+" points for that item");
+countAllPoints();
+}
+//Earn location points
+var totalLocPoints;
+var z;
+var y;
+var q;
+var totalGamePoints;
+
+function moveLocPoints(){
+y = locPoints.splice(currentLoc,1,0);
+earnedLocPoints.push(y);
+z=earnedLocPoints.length;
+for(var i=0; i < z; i++){
+   sum += z;
+   return z;
+   displayMessage(z);
+   }
+
+}
+/*
+function countLocPoints(){
+for(var i=0; i < earnedLocPoints.length; i++){
+   sum += parseInt(earnedLocPoints[i]);
+   z=sum;
+   displayMessage(sum);
+}
+//countAllPoints();
+}
+function countAllPoints(){
+totalGamePoints = z+totalItemPoints;
+displayPoints();
+}*/
+//Show points
+function displayPoints(){
+displayMessage(totalGamePoints+" points");
+}
+//Lose Game function. You can lose the game by either going out of the park or visiting too many sites without collecting all the objects. A player can only go outside the park when they are using text entries to navigate. Ignoring a warning in the navigation error box is punishable by death. :) 
+	function loseGame(){
+		if (currentLoc=1000||tooLong>=13){
+		var deathChoice = Math.floor(Math.random() * 10);
+		displayMessage("Wait. What's going on? You suddenly feel SUPER weird and you hear a noise behind you. Just as you feel yourself blacking out, you start to turn and "+loserDeath[deathChoice]);
+			}
 		}
 //Loser Deaths
 var loserDeath=[
@@ -179,16 +247,6 @@ var loserDeath=[
 	/*8 Aquarium*/"Aquarium",
 	/*9 Zoo*/"Animals",
 ]
-/*Lose Game function. You can lose the game by either going out of the park or visiting too many sites without collecting all the objects. A player can only go outside the park when they are using text entries to navigate. Ignoring a warning in the navigation error box is punishable by death. :) */
-	function loseGame(){
-		if (currentLoc=1000){
-		var deathChoice = Math.floor(Math.random() * 10);
-		displayMessage(loserDeath[deathChoice]);
-		}
-//		else {
-//			if(tooLong>=13){
-//				displayMessage("Wait. What's going on? You suddenly feel SUPER weird and you hear a noise behind you. Just as you feel yourself blacking out, you start to turn and "+(loserDeaths[deathChoice]);}
-				}
 //Onload function
 	function init(){
 	buttonDisable(0);
@@ -301,6 +359,9 @@ displayMessage(help);
 
 
 <div>
+<div id="score"> 		<!--score display area-->
+	<p id="scoreSpot" class="scoreSpot"></p>
+</div>					<!--score display area-->
 		<textarea id="taMain" rows="15" cols="100"></textarea><br>
 		<input type="button" id="btnW" value="West" onclick="btnWest_click();">
 		<input type="button" id="btnE" value="East" onclick="btnEast_click();">
