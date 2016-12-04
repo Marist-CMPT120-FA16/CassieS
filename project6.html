@@ -12,9 +12,10 @@
 		var x=0;
 		var name;
 		var youTook="";
+		var locError=1000;
 //Name collect
 function nameCollect(){
-    var person = prompt("Please enter your name", "Name");
+    var person = prompt("Please enter your name", "You");
     if (person != null) {
 		name=person;
 		}
@@ -47,6 +48,9 @@ var locArr = [
 /*8 Aquarium*/loc8.desc,
 /*9 Zoo*/loc9.desc,
 ]
+var errorMsg = [
+/*0*/ "As you head that way, you hit the gate that surrounds the park. You feel SUPER weird the closer you get. Suddenly, you black out. You wake up in a heap right where you entered the park. No one is around, so you keep looking.",
+/*1*/ "You see the edge of the park. You don't want to risk what happened last time, so you go to turn. As you turn, "]
 //Navigation variables
 		var NORTH = 0;
 		var SOUTH = 1;	 
@@ -55,16 +59,16 @@ var locArr = [
 //Navigation locations
 		var nav = [ // N,S,E,W,
              /*Current Location*/ 
-			 /*0 Entrance*/ [4,-1,2,1],
-             /*1 Mansion*/ [3,-1,0,-1],
-			 /*2 Coaster*/ [5,-1,-1,0],
-			 /*3 Circus*/ [6,1,4,-1],
+			 /*0 Entrance*/ [4,1000,2,1],
+             /*1 Mansion*/ [3,1000,0,1000],
+			 /*2 Coaster*/ [5,1000,1000,0],
+			 /*3 Circus*/ [6,1,4,1000],
 			 /*4 Concessions*/ [7,0,5,3],
-			 /*5 Insect*/ [8,2,-1,4],
-			 /*6 Children's*/ [9,3,7,-1],
+			 /*5 Insect*/ [8,2,1000,4],
+			 /*6 Children's*/ [9,3,7,1000],
 			 /*7 Stadium*/ [9,4,8,6],
-			 /*8 Aquarium*/ [9,5,-1,7],
-			 /*9 Zoo*/ [-1,6,-1,-1]
+			 /*8 Aquarium*/ [9,5,1000,7],
+			 /*9 Zoo*/ [1000,6,1000,1000]
 			 ];        
 // Directional Button Event Handlers
 		function btnEast_click() {nextLoc(EAST);}
@@ -74,9 +78,13 @@ var locArr = [
 		function nextLoc(dir) {
 			var newLoc = nav[currentLoc][dir];
 			currentLoc=newLoc;
+			if (currentLoc==1000){
+				loseGame();
+				buttonDisable();
+				}
+			else{
 			var locText=locArr[newLoc];
 			var itemText;
-
 			buttonDisable();
 			if (itemDesc[currentLoc]!=0){
 				itemText=itemDesc[currentLoc];
@@ -84,6 +92,7 @@ var locArr = [
 				}
 				else{
 					displayMessage(locArr[newLoc]);
+					}
 					}
 					}
 //Items Objects
@@ -154,23 +163,45 @@ function btnTake(){
 //Win function
 		function winGame(){
 		if (itemBag.length==6){
-		displayMessage("Crap! As you go to put it in the bag, the notebook falls to the ground. You reach down to pick it up. Suddenly, you register what you're reading. In frantically drawn text, it says 'HELP! I'M TRAPPED BEHIND THE WATERFALL!!!' \n\nSomeone - or something? - must have dropped it...after...You don't want to think about what's happened to Sam. You run to the Wicked Waters display and carefully try to get behind the waterfall. \n\nIt's impossible! No, wait, you have an idea. Using the rope, you lower yourself from the top of the waterfall. Behind it, you see a cage. THERE'S SAM!! You unlock the cage and grab Sam, who, semi-conscious, is able to stumble along with your help. \n\nHow to get out of here?? There's a door in the back! Using the ID card, you are able to scan it and open the door. You run to the nearest exit! \n\nOMG YOU MADE IT!!! Once you're clear of the park - AND SAFE!! - you set Sam on the ground.\n\n'SAM!! SAM!! WAKE UP!'\n\n'"+name+"? Is that you?'\n\n'Yeah, are you okay?'\n\n'I'm fantassssttiiiiccc' \n\nSam's voice completely changes...and looks up at you. Staring back at you is a hideously disgusting caricature of what was once your best friend. Not human. Not natural. As the creature lunges, you see a sign in the distance and realize, \n\n'I'm still in the park...'")
+		displayMessage("Crap! As you go to put it in the bag, the notebook falls to the ground. You reach down to pick it up. Suddenly, you register what you're reading. In frantically drawn text, it says 'HELP! I'M TRAPPED BEHIND THE WATERFALL!!!' \n\nSomeone - or something? - must have dropped it...after...You don't want to think about what's happened to Sam. You run to the Wicked Waters display and carefully try to get behind the waterfall. \n\nIt's impossible! No, wait, you have an idea. Using the rope, you lower yourself from the top of the waterfall. Behind it, you see a cage. THERE'S SAM!! You unlock the cage and grab Sam, who, semi-conscious, is able to stumble along with your help. \n\nHow to get out of here?? There's a door in the back! Using the ID card, you are able to scan it and open the door. You run to the nearest exit! \n\nOMG YOU MADE IT!!! Once you're clear of the park - AND SAFE!! - you set Sam on the ground.\n\n'SAM!! SAM!! WAKE UP!'\n\n'"+name+"? Is that you?'\n\n'Yeah, are you okay?'\n\n'I'm fantassssttiiiiccc' \n\nSam's voice completely changes...and looks up at you. Staring back  is a hideously disgusting caricature of what was once your best friend. Not Sam. Not human. Not...natural. As the creature lunges, you see a sign in the distance and realize, \n\n'We're still in the park...'")
 		}
 		}
-//Lose function
-		function loseGame(){
+//Loser Deaths
+var loserDeath=[
+	/*0 Mansion*/"You wake up in a heap right where you entered the park. No one is around, so you keep looking.",
+	/*1 Waters*/"Water",
+	/*2 Coaster*/"Coaster",
+	/*3 Circus*/"Circus",
+	/*4 Confections*/"Confection", 
+	/*5 Insect*/"Insect",
+	/*6 Children's*/"Children",
+	/*7 Stadium*/"Stadium",
+	/*8 Aquarium*/"Aquarium",
+	/*9 Zoo*/"Animals",
+]
+/*Lose Game function. You can lose the game by either going out of the park or visiting too many sites without collecting all the objects. A player can only go outside the park when they are using text entries to navigate. Ignoring a warning in the navigation error box is punishable by death. :) */
+	function loseGame(){
+		if (currentLoc=1000){
+		var deathChoice = Math.floor(Math.random() * 10);
+		displayMessage(loserDeath[deathChoice]);
 		}
+//		else {
+//			if(tooLong>=13){
+//				displayMessage("Wait. What's going on? You suddenly feel SUPER weird and you hear a noise behind you. Just as you feel yourself blacking out, you start to turn and "+(loserDeaths[deathChoice]);}
+				}
 //Onload function
 	function init(){
-	buttonDisable();
-	displayMessage("A new amusement park, Horrorland, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, 'Exclusive Preview' invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one."+"\n\n"+"The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you're going to find Sam.");} 
+	buttonDisable(0);
+	nameCollect();
+	displayMessage("A new amusement park, Horrorland, has come to your town. The advertisements describe it as a 'gory, terror-filled fright fest'. Everyone you know has received a free, late-night, 'Exclusive Preview' invitation prior to the grand opening. All your friends can't wait!!! Secretly, though, the place SERIOUSLY creeps you out. You find some excuse to not go, and you wind up being pretty much the only one."+"\n\n"+"The next day, people are raving about how scary/fun it is. You HAVE to go they say. However, in the days afterward, your best friend Sam has gone missing. Everyone has a theory, but only YOU KNOW it was that place. It's up to you to investigate, so, tonight, you're going to find Sam.\n\n Click or enter North,East, or West to continue...");
+	} 
 //Returns an error message if user enters text that is not NSEW
 		function wrongDir(){
 		document.getElementById("navError").innerHTML = "Oops! Try that again. N, S, E, or W."
 		}
 //Changes data entered into all lowercase
 //Launches appropriate button function based on NSEW text entered
-		function buttonGo(){
+		function btnGo(){
 		dir = document.getElementById("box").value;
 		dir = dir.toLowerCase();
 		document.getElementById("navError").innerHTML = " ";
@@ -191,7 +222,8 @@ function btnTake(){
 		case "t": btnTake();
 			break;
 		case "inventory":
-		case "i": btnInventory()
+		case "i": btnInventory();
+			break;
 		default: wrongDir();
 		}		
 		}
@@ -202,19 +234,22 @@ function btnTake(){
 		case 0: document.getElementById("btnN").disabled = false;
 				document.getElementById("btnS").disabled = true;
 				document.getElementById("btnE").disabled = false; 
-				document.getElementById("btnW").disabled = false;			
+				document.getElementById("btnW").disabled = false;	
+				document.getElementById("navError").innerHTML = "WARNING: You've reached the edge of the park. Don't try to go SOUTH..."
 			break;
 		//South West off
 		case 1: document.getElementById("btnN").disabled = false; 
 				document.getElementById("btnS").disabled = true;
 				document.getElementById("btnE").disabled = false;
-				document.getElementById("btnW").disabled = true;	
+				document.getElementById("btnW").disabled = true;
+				document.getElementById("navError").innerHTML = "WARNING: You've reached the edge of the park. Don't try to go SOUTH or WEST..."
 			break;
 		//South East off
 		case 2: document.getElementById("btnN").disabled = false;
 				document.getElementById("btnS").disabled = true;
 				document.getElementById("btnE").disabled = true;
-				document.getElementById("btnW").disabled = false;	
+				document.getElementById("btnW").disabled = false;
+				document.getElementById("navError").innerHTML = "WARNING: You've reached the edge of the park. Don't try to go SOUTH or EAST..."				
 			break;
 		//East off
 		case 8:
@@ -222,20 +257,31 @@ function btnTake(){
 				document.getElementById("btnS").disabled = false;
 				document.getElementById("btnE").disabled = true;
 				document.getElementById("btnW").disabled = false;
+				document.getElementById("navError").innerHTML = "WARNING: You've reached the edge of the park. Don't try to go EAST..."
 			break;
 		//West off
 		case 6:
 		case 3: document.getElementById("btnN").disabled = false;
 				document.getElementById("btnS").disabled = false;
 				document.getElementById("btnE").disabled = false;
-				document.getElementById("btnW").disabled = true;	
+				document.getElementById("btnW").disabled = true;
+				document.getElementById("navError").innerHTML = "WARNING: You've reached the edge of the park. Don't try to go WEST..."				
 			break;
 		//East West North off
 		case 9: document.getElementById("btnN").disabled = true;
 				document.getElementById("btnS").disabled = false;
 				document.getElementById("btnE").disabled = true;
 				document.getElementById("btnW").disabled = true;
+				document.getElementById("navError").innerHTML = "WARNING: You've reached the edge of the park. Don't try to go NORTH, EAST, or WEST..."
 			break;
+		case 1000: document.getElementById("btnN").disabled = true;
+				document.getElementById("btnS").disabled = true;
+				document.getElementById("btnE").disabled = true;
+				document.getElementById("btnW").disabled = true;
+				document.getElementById("btnTake").disabled = true;
+				document.getElementById("btnInventory").disabled = true;
+				document.getElementById("btnGo").disabled = true;
+				break;
 		default: document.getElementById("btnN").disabled = false;
 				document.getElementById("btnS").disabled = false;
 				document.getElementById("btnE").disabled = false;
@@ -260,13 +306,14 @@ displayMessage(help);
 		<input type="button" id="btnE" value="East" onclick="btnEast_click();">
 		<input type="button" id="btnN" value="North" onclick="btnNorth_click();">
 		<input type="button" id="btnS" value="South" onclick="btnSouth_click();">
-		<input type="button" id="take" value="Take" onclick="btnTake();">
-		<input type="button" id="bag" value="Item inventory" onclick="btnInventory();">
+		<input type="button" id="btnTake" value="Take Item" onclick="btnTake();">
+		<input type="button" id="btnInventory" value="Item inventory" onclick="btnInventory();">
 		<input type="button" id="test" value="test" onclick="nameCollect();">
 <!--navigation text input-->
 <input type="text" id="box"> 
-<input type="button" class="button" onclick="buttonGo();" value="Go">
-<p id="navError"></p>Would you like to go N, S, E, or W? Would you like to TAKE that item?
+<input type="button" id="btnGo" class="button" onclick="btnGo();" value="Go">
+<p>Would you like to go N, S, E, or W? Would you like to TAKE that item?</p>
+<p id="navError"></p>
 <!--navigation text input-->
 </div>
 <div> 					<!--help display-->
