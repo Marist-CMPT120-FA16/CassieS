@@ -1,0 +1,285 @@
+<div id="score"> 		<!--score display area-->
+	<p id="scoreSpot" class="scoreSpot"></p>
+</div>					<!--score display area--> 
+<div id="textBox"> 		<!--navigation text input-->
+<input type="text" id="box">
+<input type="button" class="button" onclick="buttonGo();" value="Go">
+<p id="navError"></p>
+<p>Would you like to go N, S, E, or W?</p>
+<p>Would you like to TAKE that item?</p>
+</div> 					<!--navigation text input-->
+
+
+
+
+
+/*Loser's Deaths. Every site has it's own unique death.
+	var loserDeaths[*/
+//	/*0 Mansion*/"You wake up in a heap right where you entered the park. No one is around, so you keep looking.",
+//	/*1 Waters*/"",
+//	/*2 Coaster*/"",
+//	/*3 Circus*/"",
+//	/*4 Confections*/"", 
+//	/*5 Insect*/"",
+//	/*6 Children's*/"",
+//	/*7 Stadium*/"",
+//	/*8 Aquarium*/"",
+//	/*9 Zoo*/"",
+//	]
+/*Lose Game function. You can lose the game by either going out of the park or visiting too many sites without collecting all the objects. A player can only go outside the park when they are using text entries to navigate. Ignoring a warning in the navigation error box is punishable by death. :) */
+/*	function loseGame(){
+	if (currentLoc<0){
+		var deathChoice = Math.floor(Math.random() * 10);
+		displayMessage(loserDeaths[deathChoice]);
+		}
+		else {
+			if(tooLong>=13){
+				displayMessage("Wait. What's going on? You suddenly feel SUPER weird and you hear a noise behind you. Just as you feel yourself blacking out, you start to turn and "+(loserDeaths[deathChoice]);}
+				}*/
+
+
+
+
+//Point Items
+var totalItems;
+
+function countItemPoints(){
+totalItems=itemBag.length;
+var itemTotal=(totalItems-2)*16;
+displayMessage("You've earned "+itemTotal+" points for that item");
+countAllPoints();
+}
+//Earn location points
+var totalLocPoints;
+var z;
+var y;
+var q;
+var totalGamePoints;
+
+function removeLocPoints(){
+y = locPoints.splice(currentLoc,1,0);
+}
+function addPoints(earnedLocPoints, y) {
+    earnedLocPoints.push(y);
+	displayMessage(earnedLocPoints.length);
+}
+
+//earnedLocPoints.push(y);
+z=earnedLocPoints.length;
+for(var i=0; i < z; i++){
+   sum += z;
+   return z;
+   displayMessage(z);
+   }
+
+}
+
+function countLocPoints(){
+for(var i=0; i < earnedLocPoints.length; i++){
+   sum += parseInt(earnedLocPoints[i]);
+   z=sum;
+   displayMessage(sum);
+}
+//countAllPoints();
+}
+function countAllPoints(){
+totalGamePoints = z+totalItemPoints;
+displayPoints();
+}*/
+//Show points
+function displayPoints(){
+displayMessage(totalGamePoints+" points");
+}
+//Process Points
+function processLocPoints(){
+removeLocPoints;
+addPoints();
+}
+//Point Items
+var totalItems;
+
+function countItemPoints(){
+totalItems=itemBag.length;
+var itemTotal=(totalItems-2)*16;
+displayMessage("You've earned "+itemTotal+" points for that item");
+countAllPoints();
+}
+//Earn location points
+var totalLocPoints;
+var z;
+var y;
+var q;
+var totalGamePoints;
+
+function removeLocPoints(){
+y = locPoints.splice(currentLoc,1,0);
+}
+function addPoints(earnedLocPoints, y) {
+    earnedLocPoints.push(y);
+	displayMessage(earnedLocPoints.length);
+}
+
+//earnedLocPoints.push(y);
+z=earnedLocPoints.length;
+for(var i=0; i < z; i++){
+   sum += z;
+   return z;
+   displayMessage(z);
+   }
+
+}
+
+function countLocPoints(){
+for(var i=0; i < earnedLocPoints.length; i++){
+   sum += parseInt(earnedLocPoints[i]);
+   z=sum;
+   displayMessage(sum);
+}
+//countAllPoints();
+}
+function countAllPoints(){
+totalGamePoints = z+totalItemPoints;
+displayPoints();
+}*/
+//Show points
+function displayPoints(){
+displayMessage(totalGamePoints+" points");
+}
+//Process Points
+function processLocPoints(){
+removeLocPoints;
+addPoints();
+}
+//Point Items
+var totalItems;
+
+function countItemPoints(){
+totalItems=itemBag.length;
+var itemTotal=(totalItems-2)*16;
+displayMessage("You've earned "+itemTotal+" points for that item");
+countAllPoints();
+}
+//Earn location points
+var totalLocPoints;
+var z;
+var y;
+var q;
+var totalGamePoints;
+
+function removeLocPoints(){
+y = locPoints.splice(currentLoc,1,0);
+}
+function addPoints(earnedLocPoints, y) {
+    earnedLocPoints.push(y);
+	displayMessage(earnedLocPoints.length);
+}
+
+//earnedLocPoints.push(y);
+z=earnedLocPoints.length;
+for(var i=0; i < z; i++){
+   sum += z;
+   return z;
+   displayMessage(z);
+   }
+
+}
+
+function countLocPoints(){
+for(var i=0; i < earnedLocPoints.length; i++){
+   sum += parseInt(earnedLocPoints[i]);
+   z=sum;
+   displayMessage(sum);
+}
+//countAllPoints();
+}
+function countAllPoints(){
+totalGamePoints = z+totalItemPoints;
+displayPoints();
+}*/
+//Show points
+function displayPoints(){
+displayMessage(totalGamePoints+" points");
+}
+//Process Points
+function processLocPoints(){
+removeLocPoints;
+addPoints();
+}
+
+
+
+
+var numbers = [65, 44, 12, 4];
+var total;
+
+function getSum(total, num) {
+    return total + num;
+}
+function totalLocPoints(item) {
+total=earnedLocPoints.reduce(getSum);
+    displayMessage(total);
+}
+
+
+
+
+
+//Location Scores
+var locPoints = [
+	/*0 Mansion*/52,
+	/*1 Waters*/50,
+	/*2 Coaster*/50,
+	/*3 Circus*/50,
+	/*4 Confections*/50, 
+	/*5 Insect*/50,
+	/*6 Children's*/50,
+	/*7 Stadium*/50,
+	/*8 Aquarium*/50,
+	/*9 Zoo*/50,
+	]
+	
+//Earned Location Scores
+var earnedLocPoints = []
+var visitPointsRemoved;
+var visitPointsTallied;
+
+function firstVisit(){
+	visitPointsRemoved = locPoints.splice(currentLoc,1,0);
+	earnedLocPoints.push(visitPointsRemoved);
+//	displayMessage(earnedLocPoints.length);
+}
+
+var fLen = earnedLocPoints.length;
+var m=0;
+var n=0;
+function reducer(accumulator,item) {
+  return accumulator + item;
+  }
+  
+function printSum(){
+var sum=earnedLocPoints.reduce(reducer,m);
+//displayMessage(sum);
+}
+//
+
+
+
+
+function totalPoints(){
+printSum();
+n=totalItemPoints + sum;
+document.getElementById("scoreSpot").innerHTML=n;
+}
+
+
+
+
+//			printSum();
+//			totalLocPoints();
+//			pointsTest();
+			totalPoints();
+
+
+
+
+
