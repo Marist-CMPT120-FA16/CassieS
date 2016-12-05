@@ -15,8 +15,8 @@
 		var locError=1000;
 		var locations;
 		var locText;
-		var locScoreText=" ";
-		var locScore;
+		var locScoreText;
+		var locScore=0;
 		var totalItemPoints=0;
 //Name collect
 function nameCollect(){
@@ -26,7 +26,7 @@ function nameCollect(){
 		}
 }
 //Location prototype	
-function Location(locId, locDesc,score){
+function Location(locId,locDesc,score){
 	this.id = locId;
 	this.desc = locDesc;
 	this.score=score;}
@@ -55,7 +55,6 @@ var locArr = [
 /*9 Zoo*/loc9,
 ]
 var locVisit = []
-
 var errorMsg = [
 /*0*/ "As you head that way, you hit the gate that surrounds the park. You feel SUPER weird the closer you get. Suddenly, you black out. You wake up in a heap right where you entered the park. No one is around, so you keep looking.",
 /*1*/ "You see the edge of the park. You don't want to risk what happened last time, so you go to turn. As you turn, "]
@@ -98,7 +97,7 @@ var errorMsg = [
 			buttonDisable();
 			if (itemDesc[currentLoc]!=0){
 				itemText=itemDesc[currentLoc];
-				displayMessage(locText+"\n\n"+itemText);
+				displayMessage(locText+" "+locScoreText+"\n\n"+itemText);
 				totalGamePoints();
 				}
 				else{
@@ -112,10 +111,10 @@ function Item(itemId,itemDesc){
 	this.id = itemId;
 	this.desc = itemDesc;}
 //Individual Items
-key = new Item ("the key","As you start to head towards the mouth, um, gate?, of the zoo, you step on something hard. It's a key. The handle is shaped like a femur.\n\n\n");
-rope = new Item ("the rope","To the left, a loose length of rope dangles from one of the bleachers.\n\n\n");
-card = new Item ("the ID card","You walk by the bushes towards the door. Something glintss in the moonlight. It's an ID card!!!\n\n\n");
-notebook = new Item ("Sam's notebook","What's that? You see the corner of something sticking out of the corner near the shark tank. It's a notebook. It's SAM'S notebook!!\n\n\n");
+key = new Item ("the key","As you start to head towards the mouth, um, gate?, of the zoo, you step on something hard. It's a key. The handle is shaped like a femur.\n\n");
+rope = new Item ("the rope","To the left, a loose length of rope dangles from one of the bleachers.\n\n");
+card = new Item ("the ID card","You walk by the bushes towards the door. Something glintss in the moonlight. It's an ID card!!!\n\n");
+notebook = new Item ("Sam's notebook","What's that? You see the corner of something sticking out of the corner near the shark tank. It's a notebook. It's SAM'S notebook!!\n\n");
 //Location Item Array
 var itemDesc = [
 /*0 Mansion*/0,
@@ -157,7 +156,8 @@ function btnTake(){
 			var itemRemove=itemDesc.splice(currentLoc,1,0);
 			var itemDescReplace=itemDesc.splice(currentLoc,1,0);
 			var itemArrReplace=itemArr.splice(currentLoc,1,0);
-			totalItemPoints = 100 + totalItemPoints;
+			var itemPoints = 100;
+			totalItemPoints = itemPoints + totalItemPoints;
 			displayMessage(youTook +" You've earned 100 points");
 			}
 			else{
@@ -177,13 +177,11 @@ function btnTake(){
 		}
 		}
 //Location once
-
 locScore=0;
 var locScoreAdd;
 var locVisitTest;
 var locationsID=locations.id;
-
-
+var locTotal=0;
 function firstVisit(){
 locVisitTest=locVisit.indexOf(locations,0);
 if (locVisitTest>=0){
@@ -193,15 +191,15 @@ else if (locVisitTest<0){
 locVisitTest=locVisit.push(locations);
 locScore=locations.score;
 locScoreText=("You've earned "+locScore+" points");
+displayMessage(locScoreText);
+locTotal = locTotal + locScore;
 }
 }
-
 var gamePoints;
 function totalGamePoints(){
- gamePoints=totalItemPoints + locScore;
- document.getElementById("scoreSpot").innerHTML=("Total Points: "+gamePoints);
+ gamePoints= /*totalItemPoints*/ + locTotal;
+  document.getElementById("scoreSpot").innerHTML=("Total Points: "+gamePoints);
 }
-
 //Lose Game function. You can lose the game by either going out of the park or visiting too many sites without collecting all the objects. A player can only go outside the park when they are using text entries to navigate. Ignoring a warning in the navigation error box is punishable by death. :) 
 	function loseGame(){
 		if (currentLoc=1000||tooLong>=13){
