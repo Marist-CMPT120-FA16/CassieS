@@ -29,6 +29,7 @@ loc5 = new Location (5,"Insect Infestation: The Insect Infestation attraction is
 loc6 = new Location (6,"Children's Dreams: A playground. Of sorts. The rides are like traditional kids rides, but....off.\n");
 loc7 = new Location (7,"Severed Stadium: It says 'stadium' but it looks more like the Roman Colliseum. How bizarre! Then you remember some of the 'attractions' the Colliseum used to present...\n");
 loc8 = new Location (8,"Creatures from the Deep: An insanely large aquarium, this attraction, too, has made headlines. But, honestly, a shark is a shark, right?\n");
+loc8 = new Location (8,"Creatures from the Deep: An insanely large aquarium, this attraction, too, has made headlines. But, honestly, a shark is a shark, right?\n");
 loc9 = new Location (9,"Zombie Zoo: Part zoo, part drive-thru safari, all terrifying. Even now you can hear the sounds of animals. Sounds you don't recognize. But Sam LOVED animals, so you have to look here. As you approach the hideous gate, made to look like a way too realistic alligator gone undead, you notice a key card wedged between two of the teeth. For a cement 'gate', those teeth look awfully sharp...\n");
 //Location array
 var locArr = [
@@ -44,9 +45,6 @@ var locArr = [
 /*9 Zoo*/loc9,
 ]
 var locVisit = []
-var errorMsg = [
-/*0*/ "As you head that way, you hit the gate that surrounds the park. You feel SUPER weird the closer you get. Suddenly, you black out. You wake up in a heap right where you entered the park. No one is around, so you keep looking.",
-/*1*/ "You see the edge of the park. You don't want to risk what happened last time, so you go to turn. As you turn, "]
 //Navigation variables
 		var NORTH = 0;
 		var SOUTH = 1;	 
@@ -75,22 +73,22 @@ var errorMsg = [
 			var newLoc = nav[currentLoc][dir];
 			currentLoc=newLoc;
 			locations=locArr[currentLoc];
-			locText=locations.desc;
-			if (currentLoc==1000){
+			if (currentLoc==1000){//this didn't work right
 				loseGame();
 				buttonDisable();
 				}
 			else{
-			var itemText;
-			firstVisit();
-			buttonDisable();
-			if (itemDesc[currentLoc]!=0){
-				itemText=itemDesc[currentLoc];
-				displayMessage(locText+"\n\n"+itemText);
-				totalGamePoints();
+				var itemText;
+				locText=locations.desc;
+				firstVisit();
+				buttonDisable();
+				if (itemDesc[currentLoc]!=0){
+					itemText=itemDesc[currentLoc];
+					displayMessage(locText+"You search, but can't find any clue about Sam.\n\n"+itemText);
+					totalGamePoints();
 				}
 				else{
-					displayMessage(locText);
+					displayMessage(locText+"You search, but can't find any clue about Sam.\n\n");
 					totalGamePoints();
 					}
 					}
@@ -182,24 +180,26 @@ function totalGamePoints(){
  document.getElementById("scoreSpot").innerHTML=("Total Points: "+gamePoints);
 }
 //Lose Game function. You can lose the game by either going out of the park or visiting too many sites without collecting all the objects. A player can only go outside the park when they are using text entries to navigate. Ignoring a warning in the navigation error box is punishable by death. :) 
+//I couldn't get this to print.
 	function loseGame(){
-		if (currentLoc=1000||tooLong>=13){
-		var deathChoice = Math.floor(Math.random() * 10);
-		displayMessage("Wait. What's going on? You suddenly feel SUPER weird and you hear a noise behind you. Just as you feel yourself blacking out, you start to turn and "+loserDeath[deathChoice]);
-			}
+		if (currenLoc=1000){
+			var deathChoice = Math.floor(Math.random() * 10);
+			var dead = loserDeath[deathChoice];
+			displayMessage("Wait. What's going on? You suddenly feel SUPER weird. Just as you feel yourself blacking out, you start to turn but, suddenly, "+loserDeath[deathChoice]);
 		}
+	}
 //Loser Deaths
 var loserDeath=[
-	/*0 Mansion*/"You wake up in a heap right where you entered the park. No one is around, so you keep looking.",
-	/*1 Waters*/"Water",
-	/*2 Coaster*/"Coaster",
-	/*3 Circus*/"Circus",
-	/*4 Confections*/"Confection", 
-	/*5 Insect*/"Insect",
-	/*6 Children's*/"Children",
-	/*7 Stadium*/"Stadium",
-	/*8 Aquarium*/"Aquarium",
-	/*9 Zoo*/"Animals",
+	/*0 Mansion*/"you wake up in a tiny room. As you start for the door, the walls close in on you...YOU'RE DEAD!",
+	/*1 Waters*/"you're about to float over the cliff of the Wicked Waters ride...YOU'RE DEAD!",
+	/*2 Coaster*/"you're seated in the front car of the coaster and it's about to go through the terrifying series of loops. Only problem, you're not belted in...YOU'RE DEAD!",
+	/*3 Circus*/"you're surrounded by clowns. UNDEAD clowns...YOU'RE DEAD!",
+	/*4 Confections*/"you're in hot water. Literally! You're in an enormous pot in the consessions kitchen. The temperature is unbearable...YOU'RE DEAD!", 
+	/*5 Insect*/"you're in a display. Like a wildlife display. You notice you're not alone. Thousands of large, venomous spiders start covering you...YOU'RE DEAD!",
+	/*6 Children's*/"you're in the Children's playground. And you're not alone. Children, or rather the GHOSTS of children surround you. And they want to play...YOU'RE DEAD!",
+	/*7 Stadium*/"you're in the stadium. You thought it was for sports, but it's actually modeled after the Colloseum. And four lions are slowly approaching you...YOU'RE DEAD!",
+	/*8 Aquarium*/"you're plunged into a tank of water. You break the surface and see a triangular fin. Make that finS...YOU'RE DEAD!",
+	/*9 Zoo*/"you're floating down a stream. In the crocodile display...YOU'RE DEAD!",
 ]
 //Onload function
 	function init(){
