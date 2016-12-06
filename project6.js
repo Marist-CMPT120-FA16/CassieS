@@ -2,7 +2,6 @@
 	var x=0;
 	var name;
 	var youTook="";
-	var locError=1000;
 	var locations;
 	var locText;
 	var locScoreText=" ";
@@ -18,22 +17,23 @@
 	}
 	
 //Location prototype	
-	function Location(locId, locDesc,score){
+	function Location(locId, locDesc,locDeath){
 		this.id = locId;
 		this.desc = locDesc;
+		this.death = locDeath;
 	}
 	
 //Location objects 
-	loc0 = new Location (0,"Haunted Mansion: Like a demented Disney castle, the centerpiece entrance of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. But this is where you came in. How did you miss that?\n");
-	loc1 = new Location (1,"Wicked Waters: A water park. Simple enough. But why is the water so cloudy? And how would anyone survive that drop??\n");
-	loc2 = new Location (2,"Death by Coaster: Sneaking quietly along the walkway, the monstrous roller coaster comes into view. Already voted 'Most terrifying ride in the world', the ride twists and turns through the night sky like a snake. 'Death by Coaster.' That HAS to be an exaggeration...right?\n");
-	loc3 = new Location (3,"Circus of Horrors: A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??\n");
-	loc4 = new Location (4,"Creepy Confections: This place doesn't look that bad. Yeah, it says 'Creepy Confections,' but how bad can a few shops & restaurants be?\n");
-	loc5 = new Location (5,"Insect Infestation: The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.\n");
-	loc6 = new Location (6,"Children's Dreams: A playground. Of sorts. The rides are like traditional kids rides, but....off.\n");
-	loc7 = new Location (7,"Severed Stadium: It says 'stadium' but it looks more like the Roman Colliseum. How bizarre! Then you remember some of the 'attractions' the Colliseum used to present...\n");
-	loc8 = new Location (8,"Creatures from the Deep: An insanely large aquarium, this attraction, too, has made headlines. But, honestly, a shark is a shark, right?\n");
-	loc9 = new Location (9,"Zombie Zoo: Part zoo, part drive-thru safari, all terrifying. Even now you can hear the sounds of animals. Sounds you don't recognize. But Sam LOVED animals, so you have to look here. As you approach the hideous gate, made to look like a way too realistic alligator gone undead, you notice a key card wedged between two of the teeth. For a cement 'gate', those teeth look awfully sharp...\n");
+	loc0 = new Location (0,"Haunted Mansion: Like a demented Disney castle, the centerpiece entrance of the park is the Haunted Mansion. Modeled after the Winchester Mystery House, it's supposedly filled with weird rooms, dead ends, and strange entertainments. But this is where you came in. How did you miss that?\n","you wake up in a tiny room. \n\nAs you start for the door, the walls close in on you. \n\nLiterally. You're crushed\n\n..YOU'RE DEAD!");
+	loc1 = new Location (1,"Wicked Waters: A water park. Simple enough. But why is the water so cloudy? And how would anyone survive that drop??\n","you're about to float over the cliff of the Wicked Waters ride \n\nand NOT in a boat. You smash against the rocks and metal below...\n\nYOU'RE DEAD!");
+	loc2 = new Location (2,"Death by Coaster: Sneaking quietly along the walkway, the monstrous roller coaster comes into view. Already voted 'Most terrifying ride in the world', the ride twists and turns through the night sky like a snake. 'Death by Coaster.' That HAS to be an exaggeration...right?\n","you're seated in the front car of the coaster and it's about to go through the terrifying series of loops. \n\nOnly problem, you're not belted in. You fall from the sky...\n\nYOU'RE DEAD!");
+	loc3 = new Location (3,"Circus of Horrors: A large red and white striped, tent-like building. 'Circus of Horrors.' Oh God. This is the LAST place you wanted to be. Coulrophobia is NOT for the faint of heart. Does that say 'Side Show', too??\n","you're surrounded by clowns. UNNATURAL clowns. \n\nThey stuff you into their tiny car, crushing you to death...YOU'RE DEAD!");
+	loc4 = new Location (4,"Creepy Confections: This place doesn't look that bad. Yeah, it says 'Creepy Confections,' but how bad can a few shops & restaurants be?\n","you're in hot water. Literally! You're in an enormous pot in the consessions kitchen. The temperature is unbearable...YOU'RE DEAD!");
+	loc5 = new Location (5,"Insect Infestation: The Insect Infestation attraction is part zoo/part 'hands on experience' that is quote 'intended to education as well as terrify' unquote. You did NOT want to know what they meant by that.\n","you're in a display. Like a wildlife display. You notice you're not alone. \n\nThousands of large, venomous spiders start covering you...YOU'RE DEAD!");
+	loc6 = new Location (6,"Children's Nightmares: A playground. Of sorts. The rides are like traditional kids rides, but....off.\n","you're in the Children's playground. And you're not alone. Children, or rather the GHOSTS of children surround you. \n\nAnd they want to play...YOU'RE DEAD!");
+	loc7 = new Location (7,"Severed Stadium: It says 'stadium' but it looks more like the Roman Colliseum. How bizarre! Then you remember some of the 'attractions' the Colliseum used to present...\n","you're in the stadium. You thought it was for sports, but it's actually modeled after the Colloseum. \n\nAnd four lions are slowly approaching you. HUNGRY lions...YOU'RE DEAD!");
+	loc8 = new Location (8,"Creatures from the Deep: An insanely large aquarium, this attraction, too, has made headlines. But, honestly, a shark is a shark, right?\n","you're plunged into a tank of water. You break the surface and see a triangular fin. \n\nMake that finS...YOU'RE DEAD!");
+	loc9 = new Location (9,"Zombie Zoo: Part zoo, part drive-thru safari, all terrifying. Even now you can hear the sounds of animals. Sounds you don't recognize. But Sam LOVED animals, so you have to look here. As you approach the hideous gate, made to look like a way too realistic alligator gone undead, you notice a key card wedged between two of the teeth. For a cement 'gate', those teeth look awfully sharp...\n","you're floating down a stream. In a JUNGLE?! \n\nNo, you're in the crocodile display...YOU'RE DEAD!");
 
 //Location array
 	var locArr = [
@@ -80,9 +80,9 @@
 		var newLoc = nav[currentLoc][dir];
 		currentLoc=newLoc;
 		locations=locArr[currentLoc];
-		if (currentLoc==1000){//this didn't work right
-			loseGame();
-			buttonDisable();
+		if (currentLoc==1000){
+			loseGame(1000);
+			buttonDisable(1000);
 		}
 			else{
 				var itemText;
@@ -91,11 +91,11 @@
 				buttonDisable();
 				if (itemDesc[currentLoc]!=0){
 					itemText=itemDesc[currentLoc];
-					displayMessage(locText+"You search, but can't find any clue about Sam.\n\n"+itemText);
+					displayMessage(locText+"\nYou search, but, wait... "+itemText);
 					totalGamePoints();
 				}
 					else{
-						displayMessage(locText+"You search, but can't find any clue about Sam.\n\n");
+						displayMessage(locText+"\nYou search, but can't find any clue about Sam.\n\n");
 						totalGamePoints();
 					}
 			}
@@ -169,7 +169,7 @@
 		target.value = msg + "\n\n" + target.value;
     }
 	
-//FAKE win function
+//Win function
 	function winGame(){
 		if (itemBag.length==6){
 			displayMessage("Crap! As you go to put it in the bag, the notebook falls to the ground. You reach down to pick it up. Suddenly, you register what you're reading. In frantically drawn text, it says 'HELP! I'M TRAPPED BEHIND THE WATERFALL!!!' \n\nSomeone - or something? - must have dropped it...after...You don't want to think about what's happened to Sam. You run to the Wicked Waters display and carefully try to get behind the waterfall. \n\nIt's impossible! No, wait, you have an idea. Using the rope, you lower yourself from the top of the waterfall. Behind it, you see a cage. THERE'S SAM!! You unlock the cage and grab Sam, who, semi-conscious, is able to stumble along with your help. \n\nHow to get out of here?? There's a door in the back! Using the ID card, you are able to scan it and open the door. You run to the nearest exit! \n\nOMG YOU MADE IT!!! Once you're clear of the park - AND SAFE!! - you set Sam on the ground.\n\n'SAM!! SAM!! WAKE UP!'\n\n'"+name+"? Is that you?'\n\n'Yeah, are you okay?'\n\n'I'm fantassssttiiiiccc' \n\nSam's voice completely changes...and looks up at you. Staring back  is a hideously disgusting caricature of what was once your best friend. Not Sam. Not human. Not...natural. As the creature lunges, you see a sign in the distance and realize, \n\n'We're still in the park...'")
@@ -196,27 +196,15 @@
 	}
 	
 //Lose Game function. You can lose the game by either going out of the park or visiting too many sites without collecting all the objects. A player can only go outside the park when they are using text entries to navigate. Ignoring a warning in the navigation error box is punishable by death. :) 
-//I couldn't get this to print.
+	var deathChoice
+	var dead
 	function loseGame(){
-		if (currenLoc=1000){
-			var deathChoice = Math.floor(Math.random() * 10);
-			var dead = loserDeath[deathChoice];
-			displayMessage("Wait. What's going on? You suddenly feel SUPER weird. Just as you feel yourself blacking out, you start to turn but, suddenly, "+loserDeath[deathChoice]);
-		}
+			deathChoice = Math.floor(Math.random() * 10);
+			dead=locArr[deathChoice];
+			displayMessage("Wait. What's going on? You suddenly feel SUPER weird. You black out for a second. When you come to, "+dead.death);
 	}
-//Loser Deaths
-	var loserDeath=[
-		/*0 Mansion*/"you wake up in a tiny room. As you start for the door, the walls close in on you...YOU'RE DEAD!",
-		/*1 Waters*/"you're about to float over the cliff of the Wicked Waters ride...YOU'RE DEAD!",
-		/*2 Coaster*/"you're seated in the front car of the coaster and it's about to go through the terrifying series of loops. Only problem, you're not belted in...YOU'RE DEAD!",
-		/*3 Circus*/"you're surrounded by clowns. UNDEAD clowns...YOU'RE DEAD!",
-		/*4 Confections*/"you're in hot water. Literally! You're in an enormous pot in the consessions kitchen. The temperature is unbearable...YOU'RE DEAD!", 
-		/*5 Insect*/"you're in a display. Like a wildlife display. You notice you're not alone. Thousands of large, venomous spiders start covering you...YOU'RE DEAD!",
-		/*6 Children's*/"you're in the Children's playground. And you're not alone. Children, or rather the GHOSTS of children surround you. And they want to play...YOU'RE DEAD!",
-		/*7 Stadium*/"you're in the stadium. You thought it was for sports, but it's actually modeled after the Colloseum. And four lions are slowly approaching you...YOU'RE DEAD!",
-		/*8 Aquarium*/"you're plunged into a tank of water. You break the surface and see a triangular fin. Make that finS...YOU'RE DEAD!",
-		/*9 Zoo*/"you're floating down a stream. In the crocodile display...YOU'RE DEAD!",
-]
+
+
 //Onload function
 	function init(){
 		buttonDisable(0);
