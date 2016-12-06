@@ -1,0 +1,25 @@
+//REALLY win game
+	function winGame(){
+		displayMessage("As you turn the corner, the notebook falls to the ground. You reach down to pick it up. Suddenly, you register what you're reading. In frantically drawn text, it says 'HELP!! HAUNTED HOU...' \n\n That last word isn't finished and there looks to be blood on the page. You don't want to think about what's happened to Sam. You run to the Haunted House and carefully sneak back into the building. \n\nIt's impossible! You'll NEVER find Sam. Dejected, you collapse against the wall. WHAT?! The wall moved. Quietly, you open the door to a secret room. There's a hole in the center. You shine the flashlight down. IT'S SAM!!\n\n 'SAM!! SAM!! WAKE UP!'\n\n'"+name+"? Is that you?'\n\n'Yeah, are you okay?'\n\n'I'm...not sure. I don't know what happened...' \n\n Using the rope, you quickly lower it down and a groggy but alert Sam climbs out of the hole. \n\n Looking around, you notice a security door. Using the ID card, you are able to scan it and open the door. You run to the nearest exit, into your car, and race out of the park until you reach home! \n\nOMG YOU MADE IT!!! You're both SAFE!!")
+	}
+
+//Lose Game function. You can lose the game by either going out of the park or visiting too many sites without collecting all the objects. A player can only go outside the park when they are using text entries to navigate. Ignoring a warning in the navigation error box is punishable by death. :) 
+	function loseGame(){
+		if (currentLoc=1000||tooLong>=13){
+		var deathChoice = Math.floor(Math.random() * 10);
+		displayMessage("Wait. What's going on? You suddenly feel SUPER weird and you hear a noise behind you. Just as you feel yourself blacking out, you start to turn and "+loserDeath[deathChoice]);
+			}
+		}
+//Loser Deaths
+var loserDeath=[
+	/*0 Mansion*/"You wake up in a heap right where you entered the park. No one is around, so you keep looking.",
+	/*1 Waters*/"Water",
+	/*2 Coaster*/"Coaster",
+	/*3 Circus*/"Circus",
+	/*4 Confections*/"Confection", 
+	/*5 Insect*/"Insect",
+	/*6 Children's*/"Children",
+	/*7 Stadium*/"Stadium",
+	/*8 Aquarium*/"Aquarium",
+	/*9 Zoo*/"Animals",
+]
